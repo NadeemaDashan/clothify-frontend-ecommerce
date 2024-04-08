@@ -40,7 +40,7 @@ export default function Login() {
                 <h1 className="dark:text-white tracking-[8px] text-lg max-sm:hidden">WELCOME TO CLOTHIFY</h1>
                 <form className=" w-[70%] mt-5 flex flex-col" onSubmit={(e) => submitForm(e)} noValidate >
                     <div className="mb-6">
-                        <h1 className={isWrong===false?`hidden`:`mx-12 my-5 mt-[-5%] flex justify-center py-5 text-red-800 bg-red-100`}>
+                        <h1 className={isWrong===false?`hidden`:`mx-12 my-5 mt-[-5%] flex justify-center py-5 text-red-800 bg-red-100 rounded-md`}>
                             Email or password is not valid
                         </h1>
                         <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="email">Email address</label>
@@ -69,7 +69,7 @@ export default function Login() {
                     </div>
                     <button type="button" className="text-gray-900 bg-white border hover:text-white border-gray-300 focus:outline-none hover:bg-black focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-white dark:hover:text-black dark:hover:border-gray-600 dark:focus:ring-gray-700 mt-6 " onClick={(e) => submitForm(e)}>SIGN IN</button>
                 </form>
-                <Link to="/home"><h5 className="dark:text-gray-300 text-[#959595] mt-0 underline tracking-wider text-sm max-sm:text-[8px]">Don't have an account don't worry click here </h5></Link>
+                <Link to="/signUp"><h5 className="dark:text-gray-300 text-[#959595] mt-0 underline tracking-wider text-sm max-sm:text-[8px]">Don't have an account don't worry click here </h5></Link>
             </div>
         </div>
     )
