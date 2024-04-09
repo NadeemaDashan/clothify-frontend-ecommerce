@@ -23,16 +23,21 @@ export default function Login() {
         })
     }
     function submitForm(e) {
-        const url = 'http://localhost:8080/category/getAll'
+        const url = 'http://localhost:8080/customer/add'
         e.preventDefault();
         if(formData.password=='' || formData.email==''){
             setIsWrong(true)
         }else{
-            nav("/home")
         axios.post(url, formData)
-            .then((res) => console.log(res.data))
+            .then((res) => console.log(res.status))
+            .catch(error=>{
+                if(error.response.status==400){
+                nav('/error404')
+                }
+            })
         }
     }
+
     return (
         <div className="w-full h-screen bg-[#fbfcf0] dark:bg-black mt-0  overflow-hidden flex">
             <div className="items-center h-full w-[55%]  flex max-lg:hidden">

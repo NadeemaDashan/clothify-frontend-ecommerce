@@ -51,10 +51,11 @@ const SignUp = () => {
                     .then(res => {
                         if (res.data === true) {
                             useNav('/')
-                        }else{
-                            //TODO: Handle later after jwt is completed !
-                        console.error("something went wrong")
                         }
+                    
+                    })
+                    .catch(error=>{
+                            useNav('/error404')
                     })
                 return
             } else {
