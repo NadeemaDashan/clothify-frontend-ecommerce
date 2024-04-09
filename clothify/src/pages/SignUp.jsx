@@ -3,6 +3,7 @@ import Image from '../assets/login.png'
 import Logo from "../../public/logo.png"
 import Axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const SignUp = () => {
     const useNav = useNavigate();
@@ -183,6 +184,7 @@ const SignUp = () => {
                     </fieldset>
                     <button type="button" className="text-gray-900 bg-white border hover:text-white border-gray-300 focus:outline-none hover:bg-black focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-white dark:hover:text-black dark:hover:border-gray-600 dark:focus:ring-gray-700 mt-6 w-[100%]" onClick={(e) => submitForm(e)}>SIGN UP</button>
                 </form>
+                <Link to="/"><h5 className="dark:text-gray-300 text-[#959595] mt-0 underline tracking-wider text-sm max-sm:text-[8px]">Already a member click here to login</h5></Link>
             </div>
         </section>
     )

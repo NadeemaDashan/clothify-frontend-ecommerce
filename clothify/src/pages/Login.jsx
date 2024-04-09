@@ -3,8 +3,10 @@ import Image from "../assets/login.png"
 import Logo from "../../public/logo.png"
 import { Link } from "react-router-dom"
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+    const nav=useNavigate();
     const [formData, setFormData] = useState({
         email: "",
         password: ""
@@ -26,6 +28,7 @@ export default function Login() {
         if(formData.password=='' || formData.email==''){
             setIsWrong(true)
         }else{
+            nav("/home")
         axios.post(url, formData)
             .then((res) => console.log(res.data))
         }
