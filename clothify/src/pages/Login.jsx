@@ -4,6 +4,7 @@ import Logo from "../../public/logo.png"
 import { Link } from "react-router-dom"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Footer from "./components/Footer";
 
 export default function Login() {
     const nav=useNavigate();
