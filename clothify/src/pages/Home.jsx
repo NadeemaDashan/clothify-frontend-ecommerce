@@ -1,10 +1,10 @@
 import React from "react";
-import Header from "./components/Header";
+import Header from "./components/Header"
 
 
 export default function Home(){
     return(
-        <div>
+        <div className="dark:bg-black w-screen h-screen">
             <Header/>
         </div>
         
