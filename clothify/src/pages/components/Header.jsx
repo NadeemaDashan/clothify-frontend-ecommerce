@@ -10,8 +10,7 @@ const Header = () => {
     function handleClick(e) {
         setIsOpen(prevState => !prevState)
     }
-
-    console.log(isOpen)
+    
     return (
         <div>
         <header className="flex sticky w-screen bg-[#fbfcf0] font-mulish dark:bg-black">
