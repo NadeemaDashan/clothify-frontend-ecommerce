@@ -38,7 +38,7 @@ export default function Login() {
     }
 
     return (
-        <div className="w-full h-screen bg-[#fbfcf0] dark:bg-black mt-0  overflow-hidden flex font-mulish">
+        <div className="w-full h-screen bg-[#fbfcf0] dark:bg-black mt-0  overflow-hidden flex font-mulish scroll-custom ">
             <div className="items-center h-full w-[55%]  flex max-lg:hidden">
                 <img src={Image} className="w-[80%] mx-16" alt="Stylish women" />
             </div>

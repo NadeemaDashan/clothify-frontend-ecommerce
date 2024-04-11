@@ -19,7 +19,7 @@ const ProductView = (props) => {
     },[])
     console.log(products)
     return (
-        <div className="block">
+        <div className="block scroll-custom ">
         <section className='flex flex-col bg-[#fbfcf0] h-max w-screen items-center font-mulish overflow-x-hidden overflow-auto scrollbar-hidden dark:bg-black scroll'>
             <Header />
             <div className='mt-0 h-72 relative'>
