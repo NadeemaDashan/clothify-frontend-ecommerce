@@ -17,10 +17,9 @@ const ProductView = (props) => {
             setProducts(res.data)
         })
     },[])
-    console.log(products)
     return (
         <div className="block scroll-custom ">
-        <section className='flex flex-col bg-[#fbfcf0] h-max w-screen items-center font-mulish overflow-x-hidden overflow-auto scrollbar-hidden dark:bg-black scroll'>
+        <section className='flex flex-col bg-[#fbfcf0] h-max w-screen items-center font-mulish overflow-x-hidden overflow-auto scrollbar-hidden dark:bg-black scroll justify-center'>
             <Header />
             <div className='mt-0 h-72 relative'>
                 <img src={SummerCollectionImage} className='h-[90%] w-screen object-cover' alt='summer image' />
