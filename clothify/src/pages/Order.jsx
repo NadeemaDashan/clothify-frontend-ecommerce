@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { useNavigate } from 'react-router-dom'
@@ -10,7 +10,14 @@ const Order = () => {
         e.preventDefault();
         useNav('/order/success');
     }
+    const [isOpen, setIsOpen] = useState(false);
+
+    function handleModal() {
+        setIsOpen(prevState => !prevState)
+    }
+
     return (
+
         <div className='font-mulish'>
             <Header />
             <div className='flex'>
@@ -114,31 +121,51 @@ const Order = () => {
                         </div>
                         <button className='px-2 py-3 bg-black text-white text-lg rounded-md w-[85%] ml-3 mb-8 hover:bg-gray-400 dark:bg-white dark:text-black' onClick={(e) => submitForm(e)}>Pay Now</button>
                     </form>
-                </div>
-                <div className='flex items-center bg-[#ededed] m-0 border-t-2 border-l-2 border-b-2 flex-col dark:bg-[#2c2b2b] dark:border-gray-500 h-[150em]'>
-                    <div className='overflow-y-auto h-[40%]'>
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
+                    <p className='text-white underline px-[2%] cursor-pointer mr-[40%] ml-[32%]' onClick={handleModal}>Terms of Service</p>
+                    <div className={`${isOpen ? 'fixed z-10 inset-0 overflow-y-auto' : 'hidden'}`}>
+                        <div className="flex items-center justify-center min-h-screen px-4">
+                            <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg"></div>
+                            <div className="bg-white rounded-lg overflow-hidden shadow-xl w-[65%] z-50">
+                                <div className="bg-gray-800 py-4 px-6 flex justify-between items-center">
+                                    <h3 className="text-white text-lg font-semibold">Terms of Service</h3>
+                                    <button onClick={handleModal} className="text-white">&times;</button>
+                                </div>
+                                <div className="p-6">
+                                    <h2>Terms of Service</h2>
+                                    <p>Welcome to Clothify! These terms and conditions outline the rules and regulations for the use of Clothify's Website, located at www.clothify.com.</p>
+                                    <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use Clothify if you do not agree to take all of the terms and conditions stated on this page.</p>
+                                    <p>The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: "Client", "You" and "Your" refers to you, the person log on this website and compliant to the Company’s terms and conditions. "The Company", "Ourselves", "We", "Our" and "Us", refers to our Company. "Party", "Parties", or "Us", refers to both the Client and ourselves. All terms refer to the offer, acceptance and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner for the express purpose of meeting the Client’s needs in respect of provision of the Company’s stated services, in accordance with and subject to, prevailing law of Netherlands. Any use of the above terminology or other words in the singular, plural, capitalization and/or he/she or they, are taken as interchangeable and therefore as referring to same.</p>
+                                    <p><strong>Disclaimer:</strong> Please note that Clothify is a practice training project designed to showcase skills. It is not a real clothing store. Any products, prices, or services mentioned on this website are purely fictional and for demonstration purposes only.</p>
+                                    <p>We reserve the right to request that you remove all links or any particular link to our Website. You approve to immediately remove all links to our Website upon request. We also reserve the right to amend these terms and conditions and it’s linking policy at any time.</p>
+                                </div>
+                            </div>
                         </div>
-                    <div className='w-[100%] mb-30 sticky top-0 bg-white py-5 h-max'>
+                    </div>
+                </div>
+                <div className='flex items-center bg-[#ededed] m-0 border-t-2 border-l-2 border-b-2 flex-col dark:bg-[#202021] dark:border-gray-500 h-[1140px]'>
+                    <div className='overflow-y-auto h-[70%]'>
+                        <OrderCard />
+                        <OrderCard />
+                        <OrderCard />
+                        <OrderCard />
+                        <OrderCard />
+                        <OrderCard />
+                        <OrderCard />
+                        <OrderCard />
+                        <OrderCard />
+                        <OrderCard />
+                        <OrderCard />
+                        <OrderCard />
+                        <OrderCard />
+                    </div>
+                    <div className='w-[100%] mb-30 sticky top-0 bg-white py-5 h-[30%]'>
                         <div className='flex flex-col'>
                             <div className='flex justify-between w-[100%] px-20 py-1'>
                                 <h3 className='font-bold'>Subtotal</h3>
                                 <h2 className='font-extrabold'> Rs 6700.00</h2>
                             </div>
                             <div className='flex justify-between w-[100%] px-20 py-1'>
-                            <h3 className='font-bold'>Shipping</h3>
+                                <h3 className='font-bold'>Shipping</h3>
                                 <h2 className='font-extrabold'> Rs 500.00</h2>
                             </div>
                             <div className='flex justify-between w-[100%] px-20 py-5'>
