@@ -8,37 +8,38 @@ import SignUp from './pages/SignUp'
 import Error from './pages/Error'
 import Men from './pages/Men'
 import OrderComplete from './pages/OrderComplete'
-import PropagateLoader from 'react-spinners/ScaleLoader'
 import Hanger from './assets/hanger.gif'
 import DarkHanger from './assets/DarkHanger.png'
+import Order from './pages/Order'
 
 function App() {
   const [loading, setLoading] = useState(false);
-  
+
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false)
-    },120000);
+    }, 700);
   }, [])
 
   return (
-    loading ? 
-    <div className='w-screen h-screen justify-center items-center border flex flex-col gap-8 dark:text-white dark:bg-black'>
-    <img src={Hanger} className='dark:hidden' alt=''/>
-    <img src={DarkHanger} className='dark:block hidden' alt=''/>
-    <h1 className='text-md font-mulish font-bold'>LOADING CLOTHIFY JUST A SEC</h1>
-    </div>:
+    loading ?
+      <div className='w-screen h-screen justify-center items-center flex flex-col gap-8 dark:text-white dark:bg-black'>
+        <img src={Hanger} className='dark:hidden' alt='hanger Image' />
+        <img src={DarkHanger} className='dark:block hidden' alt='hanger Image dark' />
+        <h1 className='text-md font-mulish font-bold'>LOADING CLOTHIFY JUST A SEC</h1>
+      </div> :
       (
         <BrowserRouter>
           <Routes>
-            <Route path='/' element={<Login/>}></Route>
-            <Route path='/home' element={<Home/>}></Route>
-            <Route path='/signUp' element={<SignUp/>}></Route>
-            <Route path='/error404' element={<Error/>}></Route>
-            <Route path='/products' element={<ProductView collection="SUMMER COLLECTION"/>}></Route>
-            <Route path='/mens' element={<Men/>}></Route>
-            <Route path='/order/success' element={<OrderComplete/>}></Route>
+            <Route path='/' element={<Login />}></Route>
+            <Route path='/home' element={<Home />}></Route>
+            <Route path='/signUp' element={<SignUp />}></Route>
+            <Route path='/error404' element={<Error />}></Route>
+            <Route path='/products' element={<ProductView collection="SUMMER COLLECTION" />}></Route>
+            <Route path='/mens' element={<Men />}></Route>
+            <Route path='/order' element={<Order/>}></Route>
+            <Route path='/order/success' element={<OrderComplete />}></Route>
           </Routes>
         </BrowserRouter>
       )

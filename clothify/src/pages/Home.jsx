@@ -51,7 +51,7 @@ const Home = () => {
                         </div>
                     </Link>
                 </div>
-                <div className='flex flex-col items-center w-screen gap-2'>
+                <div className='flex flex-col items-center gap-2'>
                     <h1 className='mt-16 text-5xl tracking-[7px] ml-4'>COME HERE !</h1>
                     <h3 className='mt-7 text-2xl tracking-wider font-thin'>Our Experience Store</h3>
                     <img src={Store} className='w-[60%] mt-20 rounded-md' alt='store front'/>

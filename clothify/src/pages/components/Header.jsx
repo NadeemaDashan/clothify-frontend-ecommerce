@@ -13,7 +13,7 @@ const Header = () => {
     
     return (
         <div>
-        <header className="flex sticky w-screen bg-[#fbfcf0] font-mulish dark:bg-black">
+        <header className="flex sticky  bg-[#fbfcf0] font-mulish dark:bg-black">
             <div className="w-1/3 justify-center items-center p-5 max-lg:hidden">
                 <ul className="flex gap-7 p-5 dark:text-white">
                     <li className="ml-5 hover:underline"><Link to='/home'>Home</Link></li>

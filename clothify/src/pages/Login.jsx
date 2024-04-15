@@ -6,7 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 
-export default function Login() {
+const Login = ()=> {
     const nav=useNavigate();
     const [formData, setFormData] = useState({
         email: "",
@@ -81,3 +81,6 @@ export default function Login() {
         </div>
     )
 }   
+
+
+export default Login
