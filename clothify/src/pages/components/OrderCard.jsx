@@ -3,7 +3,7 @@ import im from '../../assets/im.png'
 
 const OrderCard = () => {
     return (
-        <section className=' px-20 py-5 flex font-mulish max-lg:ml-[-3%]'>
+        <section className=' px-20 py-5 flex font-mulish max-lg:ml-[-3%] max-sm:px-8'>
             <img src={im} alt='image of product' className='w-[15%] max-sm:w-[30%]' />
             <div className=' w-[100%]'>
                 <div className='flex justify-between'>

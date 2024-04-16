@@ -17,7 +17,6 @@ const Order = () => {
     }
 
     return (
-
         <div className='font-mulish'>
             <Header />
             <div className='flex max-lg:flex-col'>
