@@ -35,10 +35,6 @@ const Order = () => {
                         <OrderCard />
                         <OrderCard />
                         <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
                         <div className='w-[100%] mb-30 sticky top-0 bg-white py-5 h-[30%]'>
                         <div className='flex flex-col ml-[-5%]'>
                             <div className='flex justify-between w-[100%] px-20 py-1'>
@@ -162,7 +158,7 @@ const Order = () => {
                     <div className={`${isOpen ? 'fixed z-10 inset-0 overflow-y-auto' : 'hidden'}`}>
                         <div className="flex items-center justify-center min-h-screen px-4">
                             <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg"></div>
-                            <div className="bg-white rounded-lg overflow-hidden shadow-xl w-[65%] z-50">
+                            <div className="bg-white rounded-lg overflow-hidden shadow-xl w-[65%] z-50 max-lg:w-[100%]">
                                 <div className="bg-gray-800 py-4 px-6 flex justify-between items-center">
                                     <h3 className="text-white text-lg font-semibold">Terms of Service</h3>
                                     <button onClick={handleModal} className="text-white">&times;</button>

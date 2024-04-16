@@ -12,6 +12,7 @@ import Hanger from './assets/hanger.gif'
 import DarkHanger from './assets/DarkHanger.png'
 import Order from './pages/Order'
 import PageNotFound from './pages/PageNotFound'
+import Cart from './pages/components/Cart'
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -41,6 +42,7 @@ function App() {
             <Route path='/mens' element={<Men />}></Route>
             <Route path='/order' element={<Order/>}></Route>
             <Route path='/order/success' element={<OrderComplete />}></Route>
+            <Route path='/cart' element={<Cart/>}></Route>
             <Route path="*" element={<PageNotFound/>} />
           </Routes>
         </BrowserRouter>
