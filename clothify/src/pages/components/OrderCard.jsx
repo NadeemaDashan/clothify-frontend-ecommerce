@@ -1,4 +1,4 @@
-import React from 'react'
+
 import im from '../../assets/im.png'
 
 const OrderCard = () => {

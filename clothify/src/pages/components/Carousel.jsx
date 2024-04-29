@@ -1,5 +1,4 @@
-import { transform } from 'framer-motion';
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useState } from 'react'
 
 const Carousel = ({ children: slides,autoSlide=false, autoSlideInterval=3000 }) => {

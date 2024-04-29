@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react/no-unescaped-entities */
+import { useState } from "react";
 import Image from "../assets/login.png"
 import Logo from "../../public/logo.png"
 import { Link } from "react-router-dom"
@@ -32,6 +33,7 @@ const Login = ()=> {
         axios.post(url, formData)
             .then((res) => console.log(res.status))
             .catch(error=>{
+                console.log(error)
                 nav('/error404')
             })
         }
@@ -50,7 +52,7 @@ const Login = ()=> {
                         <h1 className={isWrong===false?`hidden`:`mx-12 my-5 mt-[-5%] flex justify-center py-5 text-red-800 bg-red-100 rounded-md`}>
                             Email or password is not valid
                         </h1>
-                        <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="email">Email address</label>
+                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email address</label>
                         <input type="email"
                             id="email"
                             className="bg-[#FFFFFF] px-5  h-11 border focus:outline-inherit border-black text-gray-900 text-sm rounded-sm focus:ring-black focus:border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:outline-none peer invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
@@ -58,12 +60,12 @@ const Login = ()=> {
                             name="email"
                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                             onChange={(e) => handleChange(e)} />
-                        <span class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
+                        <span className="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
                             Please enter a valid email address
                         </span>
                     </div>
                     <div className="mb-6">
-                        <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="password">Password</label>
+                        <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                         <input type="password"
                             id="password"
                             className="bg-[#FFFFFF] h-11 px-5 border focus:outline-inherit border-black text-gray-900 text-sm rounded-sm focus:ring-black focus:border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:outline-none invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"

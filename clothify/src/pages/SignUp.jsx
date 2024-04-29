@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Image from '../assets/login.png'
 import Logo from "../../public/logo.png"
 import Axios from 'axios'
@@ -55,7 +55,7 @@ const SignUp = () => {
                     
                     })
                     .catch(error=>{
-                            useNav('/error404')
+                           useNav('/error404')
                     })
                 return
             } else {
@@ -104,7 +104,7 @@ const SignUp = () => {
                     </h1>
                     <div className='flex mb-6 w-[100%] '>
                         <div className=' w-[48%] mr-[2%]'>
-                            <label for="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="username">Username</label>
+                            <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" name="username">Username</label>
                             <input type="text"
                                 id="username"
                                 className="bg-[#FFFFFF] px-5  h-11 border focus:outline-inherit border-black text-gray-900 text-sm rounded-sm focus:ring-black focus:border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:outline-none peer invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
@@ -113,7 +113,7 @@ const SignUp = () => {
                                 onChange={(e) => handleChange(e)} />
                         </div>
                         <div className='w-[50%]'>
-                            <label for="Phone Number" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="username">Phone Number</label>
+                            <label htmlFor="Phone Number" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" name="username">Phone Number</label>
                             <input type="text"
                                 id="phone"
                                 className="bg-[#FFFFFF] px-5  h-11 border focus:outline-inherit border-black text-gray-900 text-sm rounded-sm focus:ring-black focus:border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:outline-none peer invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
@@ -127,7 +127,7 @@ const SignUp = () => {
                         </div>
                     </div>
                     <div className="mb-6">
-                        <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="email">Email Address</label>
+                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" name="email">Email Address</label>
                         <input type="email"
                             id="email"
                             className="bg-[#FFFFFF] px-5  h-11 border focus:outline-inherit border-black text-gray-900 text-sm rounded-sm focus:ring-black focus:border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:outline-none peer invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
@@ -140,7 +140,7 @@ const SignUp = () => {
                         </span>
                     </div>
                     <div className="mb-6">
-                        <label for="address" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="address">Address</label>
+                        <label htmlFor="address" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" name="address">Address</label>
                         <input type="text"
                             id="address"
                             className="bg-[#FFFFFF] px-5  h-11 border focus:outline-inherit border-black text-gray-900 text-sm rounded-sm focus:ring-black focus:border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:outline-none peer invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
@@ -150,7 +150,7 @@ const SignUp = () => {
                     </div>
                     <div className='flex mb-6 w-[100%] '>
                         <div className=' w-[48%] mr-[2%]'>
-                            <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="password">Password</label>
+                            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" name="password">Password</label>
                             <input type="password"
                                 id="password"
                                 className="bg-[#FFFFFF] px-5  h-11 border focus:outline-inherit border-black text-gray-900 text-sm rounded-sm focus:ring-black focus:border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:outline-none peer invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
@@ -163,7 +163,7 @@ const SignUp = () => {
                             </span>
                         </div>
                         <div className='w-[50%]'>
-                            <label for="verify" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="verify">Verify Password</label>
+                            <label htmlFor="verify" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" name="verify">Verify Password</label>
                             <input type="password"
                                 id="verify"
                                 className="bg-[#FFFFFF] px-5  h-11 border focus:outline-inherit border-black text-gray-900 text-sm rounded-sm focus:ring-black focus:border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:outline-none peer invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
@@ -176,11 +176,11 @@ const SignUp = () => {
                         <legend className="sr-only">Checkbox variants</legend>
                         <div className="flex items-center mb-4">
                             <input checked id="checkbox-1" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                            <label for="checkbox-1" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300" name='terms'>I agree to the <a href="#" className="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a>.</label>
+                            <label htmlFor="checkbox-1" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300" name='terms'>I agree to the <a href="#" className="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a>.</label>
                         </div>
                         <div className="flex items-center mb-4">
                             <input id="checkbox-2" type="checkbox" value='' className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                            <label for="checkbox-2" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I want to get promotional offers</label>
+                            <label htmlFor="checkbox-2" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I want to get promotional offers</label>
                         </div>
                     </fieldset>
                     <button type="button" className="text-gray-900 bg-white border hover:text-white border-gray-300 focus:outline-none hover:bg-black focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-white dark:hover:text-black dark:hover:border-gray-600 dark:focus:ring-gray-700 mt-6 w-[100%]" onClick={(e) => submitForm(e)}>SIGN UP</button>

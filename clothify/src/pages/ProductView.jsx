@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+/* eslint-disable react/jsx-key */
+import { useEffect, useState } from 'react'
 import ProductCard from './components/ProductCard'
 import Header from './components/Header'
 import SummerCollectionImage from '../assets/summerCollection.png'
@@ -16,6 +17,7 @@ const ProductView = (props) => {
         const url = "http://localhost:8080/product/get/all";
         Axios.get(url).then((res) => {
             setProducts(res.data)
+            nav("/")
         })
     }, [])
     return (

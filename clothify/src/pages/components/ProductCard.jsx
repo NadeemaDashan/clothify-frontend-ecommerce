@@ -1,4 +1,4 @@
-import React from 'react'
+
 import ProductImg from '../../assets/product.png'
 import { Link } from 'react-router-dom'
 

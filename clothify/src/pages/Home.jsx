@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Header from './components/Header'
 import Carousel from './components/Carousel'
 import Formal from '../assets/formal.png'
@@ -19,7 +19,7 @@ const Home = () => {
             <div className='flex justify-center items-center mt-0 flex-col'>
                 <div className='w-[98%] justify-center flex '>
                     <Carousel autoSlide={true}>
-                        {slides.map(img => (<img src={img} className='object-cover' />))}
+                        {slides.map(img => (<img src={img} key={slides} className='object-cover' />))}
                     </Carousel>
                 </div>
                 <h1 className='mt-16 text-5xl tracking-[6px] ml-4'>NEW COLLECTION</h1>

@@ -7,7 +7,7 @@ import Menu from '../../assets/Menu.png'
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false)
 
-    function handleClick(e) {
+    function handleClick() {
         setIsOpen(prevState => !prevState)
     }
     
