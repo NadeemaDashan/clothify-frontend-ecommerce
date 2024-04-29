@@ -13,6 +13,9 @@ import DarkHanger from './assets/DarkHanger.png'
 import Order from './pages/Order'
 import PageNotFound from './pages/PageNotFound'
 import Cart from './pages/components/Cart'
+import Kids from './pages/Kids'
+import Womens from './pages/Womens'
+import Teens from './pages/Teens'
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -40,6 +43,9 @@ function App() {
             <Route path='/error404' element={<Error />}></Route>
             <Route path='/products' element={<ProductView collection="SUMMER COLLECTION" />}></Route>
             <Route path='/mens' element={<Men />}></Route>
+            <Route path='/kids' element={<Kids />}></Route>
+            <Route path='/womens' element={<Womens/>}></Route>
+            <Route path='/teens' element={<Teens/>}></Route>
             <Route path='/order' element={<Order/>}></Route>
             <Route path='/order/success' element={<OrderComplete />}></Route>
             <Route path='/cart' element={<Cart/>}></Route>
