@@ -34,6 +34,7 @@ import women from '../assets/women.png';
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import ProductFilter from './components/ProductFilter';
 
 export default function Home() {
 

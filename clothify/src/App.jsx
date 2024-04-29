@@ -16,6 +16,7 @@ import Cart from './pages/components/Cart'
 import Kids from './pages/Kids'
 import Womens from './pages/Womens'
 import Teens from './pages/Teens'
+import ProductSelection from './pages/ProductSelection'
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -42,6 +43,7 @@ function App() {
             <Route path='/signUp' element={<SignUp />}></Route>
             <Route path='/error404' element={<Error />}></Route>
             <Route path='/products' element={<ProductView collection="SUMMER COLLECTION" />}></Route>
+            <Route path='/selected' element={<ProductSelection/>}></Route>
             <Route path='/mens' element={<Men />}></Route>
             <Route path='/kids' element={<Kids />}></Route>
             <Route path='/womens' element={<Womens/>}></Route>
@@ -49,7 +51,7 @@ function App() {
             <Route path='/order' element={<Order/>}></Route>
             <Route path='/order/success' element={<OrderComplete />}></Route>
             <Route path='/cart' element={<Cart/>}></Route>
-            <Route path="*" element={<PageNotFound/>} />
+            <Route path="*" element={<PageNotFound/>}></Route>
           </Routes>
         </BrowserRouter>
       )

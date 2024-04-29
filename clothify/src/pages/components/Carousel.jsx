@@ -9,7 +9,7 @@ const Carousel = ({ children: slides,autoSlide=false, autoSlideInterval=3000 }) 
     function next(){
         setCurr(current=>current===slides.length-1?0:current+1)
     }
-
+x
     useEffect(()=>{
         if(!autoSlide) return
         const slideInterval = setInterval(next,autoSlideInterval);

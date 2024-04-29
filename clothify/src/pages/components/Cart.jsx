@@ -1,55 +1,16 @@
-import cartImg from '../../assets/product.png'
-import min from '../../assets/min.png'
-import max from '../../assets/Max (1).png'
-import bin from '../../assets/delete.png'
+import CartItem from './Cartitem'
 
 const Cart = () => {
     return (
-
-        <div className='flex flex-col  mt-[3%] mr-[3%] items-end '>
-            <div className='flex flex-col border rounded-xl  justify-end items-start w-[30%] pt-2 bg-[#FFFFF5] pb-6'>
+        <div className={'flex flex-col  mt-[3%]   items-end '}>
+            <div className='flex flex-col border-b rounded-t-xl  border-t-2 border-l-2 border-r-2 justify-end items-start  pt-2 bg-[#FFFFF5] pb-6 w-[35%]'>
                 <h1 className='font-mulish font-extrabold text-xl pt-3 pl-6 pb-6 '>SHOPPING CART </h1>
-                <div className='  scrollbar-thin overflow-scroll p-2 bg-[#FFFFF5] h-[13rem]'>
-                    <div className='flex mb-3 '>
-                        <div className='ml-4  w-[30%]'>
-                            <img src={cartImg} alt="" />
-                        </div>
-                        <div className='flex flex-col pr-[20%] '>
-                            <div className='  flex'>
-                                <h2 className='ml-3'>Yellow Sweatshirt</h2>
-                                <span className=' pr-5 mr-0 ml-[65%]'> 3500.00</span>
-                            </div>
-                            <span className='ml-[10%] mt-3'>xs/Black</span>
-                            <div className='flex flex-row size-[9%] ml-[10%] mt-4'>
-                                <img src={min} alt="" />
-                                <input className='w-[4rem] pl-[2]  bg-black text-white  ' type="number" />
-                                <img src={max} />
-                                <img className='w-[100%] h-[24px] pb-1' src={bin} />
-                            </div>
-                        </div>
-                    </div>
-                    <div className='flex '>
-                        <div className='ml-4  w-[30%]'>
-                            <img src={cartImg} alt="" />
-                        </div>
-                        <div className='flex flex-col pr-[20%] '>
-                            <div className=' 8 flex'>
-                                <h2 className='pl-5'>Yellow Sweatshirt</h2>
-                                <span className=' pr-5 mr-0 ml-[67%]'> 3500.00</span>
-                            </div>
-                            <span className='ml-[10%]'>xs/Black</span>
-                            <div className='flex flex-row size-[9%] ml-[10%] mt-4'>
-                                <img src={min} alt="" />
-                                <input className='w-[4rem] pl-6 text-white bg-black ml-2 mr-2' type="number" />
-                                <img src={max} />
-                                <img className='w-[100%] h-[24px] pb-1' src={bin} />
-                            </div>
-                        </div>
-                    </div>
-
+                <div className='  scrollbar-thin overflow-scroll p-2 bg-[#FFFFF5] h-[10rem]'>
+                    <CartItem/>
+                    <CartItem/>
                 </div>
             </div>
-            <div className=' mt[10%] flex flex-col bg-[#E5E5B6] w-[30%] border-b rounded-b-xl'>
+            <div className=' mt[10%] flex flex-col bg-[#E5E5B6] w-[35%]  rounded-b-xl border-b-2 border-l-2 border-r-2'>
                 <div className='flex p-6 mb-0 '>
                     <span>Total</span>
                     <span className='ml-auto'>LKR 10500.00</span>
