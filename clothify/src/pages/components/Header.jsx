@@ -14,7 +14,7 @@ const Header = () => {
     }
     
     return (
-        <div className='mt-5  w-[85%] ml-[8%]'>
+        <div className='pt-5  w-[85%] ml-[8%]'>
         <header className="flex sticky  bg-[#F4F4DC] font-mulish dark:bg-[#18191b]  rounded-xl h-[6rem] mb-10">
             <div className="w-1/3 justify-center items-center p-7 max-lg:hidden ">
                 <ul className="flex gap-7 p-2 dark:text-white tracking-wider lg:tracking-wide lg:text-xs  text-sm">
