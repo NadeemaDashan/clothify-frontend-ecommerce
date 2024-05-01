@@ -19,7 +19,7 @@ const Header = () => {
             <div className="w-1/3 justify-center items-center p-7 max-lg:hidden ">
                 <ul className="flex gap-7 p-2 dark:text-white tracking-wider lg:tracking-wide lg:text-xs  text-sm">
                     <li className="ml-5 hover:underline"><Link to='/mens'>Mens</Link></li>
-                    <li className="hover:underline"><Link to='/womens'>Womens</Link></li>
+                    <li className="hover:underline"><Link to='/womens'>Women</Link></li>
                     <li className="hover:underline"><Link to='/teens'>Teens</Link></li>
                     <li className="hover:underline"><Link to='/kids'>Kids</Link></li>
                     <li className="hover:underline"><Link to='/subCategories'>SubCategories</Link></li>

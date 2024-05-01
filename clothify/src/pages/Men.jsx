@@ -27,9 +27,10 @@ const Men = () => {
                 </div>
                 <div className="grid grid-cols-2 max-lg:grid-cols-3 max-md:grid-cols-2 lg:grid-cols-4 gap-0 pl-10 mt-20 w-[80%] max-lg:w-[90%] max-sm:grid-cols-1 ml-2">  
                 {products.map((element)=>{
+                    
                     return(
                         <div>
-                        <ProductCard product={element} image={Img}/>
+                        <ProductCard product={element} id={element.id} key={element.id} image={Img}/>
                         </div>
                     )
                 })}

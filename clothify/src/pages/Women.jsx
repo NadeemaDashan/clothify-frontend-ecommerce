@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { useState,useEffect } from 'react'
 import Axios from 'axios'
 
-const Womens = () => {
+const Women = () => {
     const [products, setProducts] = useState([]);
     const nav = useNavigate();
     useEffect(()=>{
@@ -40,4 +40,4 @@ const Womens = () => {
   )
 }
 
-export default Womens
+export default Women

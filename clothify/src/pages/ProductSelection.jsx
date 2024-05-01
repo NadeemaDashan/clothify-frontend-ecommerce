@@ -1,82 +1,133 @@
 import React from 'react'
 import Header from './components/Header'
-import productImg from "../assets/hi.png"
-import color from "../assets/black.png"
-import color1 from "../assets/yellow.png"
-import color2 from "../assets/red.png"
-import color3 from "../assets/green.png"
+import product from "../assets/hi.png"
+import primary from "../assets/black.png"
+import secondary from "../assets/yellow.png"
+import alter from "../assets/red.png"
+import alter_1 from "../assets/green.png"
+import { useEffect } from 'react'
+import { motion } from 'framer-motion'
+import minus from '../assets/min.png'
+import plus from '../assets/Max.png'
+import { useParams } from 'react-router-dom'
+
 
 const ProductSelection = () => {
+    const {id}=useParams();
+    console.log(id);
+    const [count, setCount] = React.useState(1)
+    const [isSelectSize, setSelectSize] = React.useState(null)
+    const [isSelectColor, setIsSelectColor] = React.useState(null)
+    const [cartItem, setCartItem] = React.useState([])
+    const [errorMessage, setErrorMessage] = React.useState("")
+
+    const addCart = () => {
+        if (!isSelectColor && !isSelectSize) {
+            setErrorMessage("Please choose given option to proceed to cart")
+            
+            setIsSelectColor(null);
+            setSelectSize(null);
+            
+        }else if (!isSelectColor && isSelectSize) {
+            setErrorMessage("please choose color")
+            setIsSelectColor(null)
+        }else if(!isSelectSize && isSelectColor){
+            setErrorMessage("please choose size")
+            setSelectSize(null);
+        }else {
+            const newItem = {
+                colorName: isSelectColor,
+                preferSize: isSelectSize
+            }
+            setCartItem([...cartItem, newItem])
+            setErrorMessage("")
+        }
+    }
+
+    const toggleColor = (colorName) => {
+        setIsSelectColor((prevIsSelectColor) => {
+            return prevIsSelectColor === colorName ? null : colorName
+        })
+    }
+
+
+    function add(params) {
+        setCount(prevCount => prevCount + 1)
+    }
+    console.log(count);
+
+    function sub(params) {
+        if (count > 1) {
+            setCount(prevCount => prevCount - 1)
+        }
+    }
+    console.log(count)
+
+
+    const toggleSize = (preferSize) => {
+        setSelectSize((prevIsisSelectSizeSize) => {
+            return prevIsisSelectSizeSize === preferSize ? null : preferSize
+        })
+    }
+
+    useEffect(() => {
+        console.log("", isSelectSize);
+    }, [isSelectSize])
+
+    useEffect(() => {
+        console.log("", isSelectColor);
+    }, [isSelectColor])
+
+
+
+
     return (
-        <div className='flex flex-col font-mulish'>
-            <Header />
-            <div className='bg-[#E5E5B6] flex justify-center items-center'>
-                <div className='w-[90%] bg-[#F4F4DC] h-max flex p-10 m-10 ml-4 rounded-lg lg:pr-0 md:flex-col  md:items-center'>
-                    <div className='w-[10%] justify-center flex flex-col gap-4 m-2 mr-5 lg:w-[30%] xl:w-[23%] md:hidden '>
-                        <img src={productImg} className='h-30' />
-                        <img src={productImg} className='h-30' />
-                        <img src={productImg} className='h-30' />
-                        <img src={productImg} className='h-30' />
-                        <img src={productImg} className='h-30' />
-                    </div>
-                    <div className='w-[75%] lg:w-[100%]  flex justify-center border-red-400 border 10 md:w-[100%] md:ml-2'>
-                        <img className='object-cover' src={productImg} />
-                    </div>
-                    <div className=' overflow-scroll border 8 border-r-emerald-500 scrollbar-thin lg:hidden xl:hidden 2xl:hidden'>
-                        <div className=' justify-center flex flex-row gap-4 m-2 mr-5  md:w-[30%] '>
-                            <img src={productImg} className='h-30' />
-                            <img src={productImg} className='h-30' />
-                            <img src={productImg} className='h-30' />
-                            <img src={productImg} className='h-30' />
-                            <img src={productImg} className='h-30' />
-                            <img src={productImg} className='h-30' />
-                            <img src={productImg} className='h-30' />
-                            <img src={productImg} className='h-30' />
-                            <img src={productImg} className='h-30' />
-                            <img src={productImg} className='h-30' />
-                            <img src={productImg} className='h-30' />
-                            <img src={productImg} className='h-30' />
-                            <img src={productImg} className='h-30' />
-                        </div>
+        <div>
+            <div>
+                <Header />
+            </div>
+
+            <div className='flex p-10 m-20 bg-[#F4F4DC] mb-0 max-lg:flex-col max-md:p-3 max-md:m-7'>
+                <div className='  w-1/3 max-lg:w-2/3 max-lg:p-5 max-lg:ml-16  max-md:w-2/3 max-md:ml-10 '>
+                    <motion.img whileHover={{ scale: 1.15 }} className=' h-[100%]  ' src={product} alt="selected product image" />
+                </div>
+                <div className=' flex flex-col w-2/3  ml-16 max-lg:w-full max-lg:ml-0 max-lg:mt-5 '>
+                    <h1 className=' text-4xl text-black  font-mulish font-extrabold tracking-widest  max-lg:text-2xl max-lg:mt-3  max-md:text-lg max-lg:ml-[20%]'>Yellow SweatShirt</h1>
+                    <p className=' mt-5 text-base font-mulish p-5  max-lg:text-xs max-md:text-[8px]'>THIS PRODUCT OFFERS LUXURIOUS, BRUSHED SURFACE WITH AN ADDED SILICONE WASH AND GIVES A PLUSH AND VELVETY HAND FEEL. ITS MADE WITH 100% FRENCH TERRY AND WAS CREATED FOR ALL THE OUTGOING PERSONALITIES OUT THERE!</p>
+                    <h3 className='mb-0  text-2xl m-10 tracking-wider font-extralight max-lg:text-lg max-md:text-base max-md:m-5 max-md:mb-0'>LKR 3250.00</h3>
+                    <h5 className=' text-sm text-gray-300 ml-5 max-lg:text-xs max-lg:ml-6 max-md:text-[10px] max-md:m-3 max-md:mt-0' >(Shipping calculated at checkout)</h5>
+                    <h3 className=' text-lg ml-4 mt-5 max-lg:text max-lg:text-sm max-lg:ml-10 max-md:text-xs max-md:ml-3'>Size </h3>
+                    <div className='flex gap-4 mt-5 ml-10 w-[100%] max-lg:w-[100%] max-md:gap-2 max-md:ml-6'>
+                        <motion.button whileHover={{ scale: 1.15 }} className={`max-lg:w-[12%] border-gray-300 focus:outline-none hover:bg-black  font-medium rounded-lg text-sm w-[7%] py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-white dark:hover:text-black dark:hover:border-gray-600 dark:focus:ring-gray-700 ${isSelectSize === "button1" ? " bg-slate-900 text-white" : " bg-slate-50 text-slate-950"}`} onClick={() => toggleSize("button1")}>XS</motion.button>
+                        <motion.button whileHover={{ scale: 1.15 }} className={`max-lg:w-[12%] bg-white  text-gray-900  hover:text-white border-gray-300 focus:outline-none hover:bg-black  font-medium rounded-lg text-sm w-[7%] py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-white dark:hover:text-black dark:hover:border-gray-600 dark:focus:ring-gray-700 ${isSelectSize === "button2" ? " bg-slate-900 text-slate-50" : " bg-slate-50 text-slate-950"}`} onClick={() => toggleSize("button2")}>S</motion.button>
+                        <motion.button whileHover={{ scale: 1.15 }} className={`max-lg:w-[12%] bg-white  text-gray-900  hover:text-white border-gray-300 focus:outline-none hover:bg-black  font-medium rounded-lg text-sm w-[7%] py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-white dark:hover:text-black dark:hover:border-gray-600 dark:focus:ring-gray-700 ${isSelectSize === "button3" ? " bg-slate-900 text-slate-50" : " bg-slate-50 text-slate-950"}`} onClick={() => toggleSize("button3")}>M</motion.button>
+                        <motion.button whileHover={{ scale: 1.15 }} className={`max-lg:w-[12%] bg-white  text-gray-900  hover:text-white border-gray-300 focus:outline-none hover:bg-black  font-medium rounded-lg text-sm w-[7%] py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-white dark:hover:text-black dark:hover:border-gray-600 dark:focus:ring-gray-700 ${isSelectSize === "button4" ? " bg-slate-900 text-slate-50" : " bg-slate-50 text-slate-950"}`} onClick={() => toggleSize("button4")}>L</motion.button>
+                        <motion.button whileHover={{ scale: 1.15 }} className={`max-lg:w-[12%] bg-white  text-gray-900  hover:text-white border-gray-300 focus:outline-none hover:bg-black  font-medium rounded-lg text-sm w-[7%] py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-white dark:hover:text-black dark:hover:border-gray-600 dark:focus:ring-gray-700 ${isSelectSize === "button5" ? " bg-slate-900 text-slate-50" : " bg-slate-50 text-slate-950"}`} onClick={() => toggleSize("button5")}>XL</motion.button>
+
+
                     </div>
 
-                    <div className='flex flex-col max-lg:w-[10%] border-8 border-white'>
-                        <div className='flex flex-col gap-5 p-7 border 4 border-red-500 items-center '>
-                            <h2 className='s  w-[100%]  ml-[10%] text-4xl font-semibold font-mulish mt-[6%] lg:text-4xl md:pl-24 md:ml-10 xl:pl-32'   >Yellow Sweat shirt  </h2>
-                            <h2 className="mt-[10%] mb-9 ml-[10%] font-semibold underline  tracking-wider text-2xl lg:text-xl border 8 md mr-10 ">Product Description</h2>
-                            <div className='border 4 border-green-500 lg:tracking-wider lg:h-60 lg:ml-[-1.3rem] lg:mr-[-1.4rem]'>
-                                <p className="ml-[10%] font-mulish tracking-wider font-extralight text-lg mr-28 lg:text-[1.09rem] md:pl-5 md:text-[1rem]">THIS PRODUCT OFFERS LUXURIOUS, BRUSHED SURFACE SILICONE WASH AND GIVES A PLUSH, AND VELVETY HAND FEEL.ITS MADE WITH 100% FRENCH
-                                </p>
-                            </div>
+                    <span className=' text-lg ml-4 mt-5 max-md:text-xs max-md:ml-3'>Color</span>
+                    <div className='flex gap-5 mt-5 ml-10 '>
+                        <motion.img whileHover={{ scale: 1.15 }} src={primary} alt="color palate first color" className={` size-10 max-md:size-7  hover:border  hover:ring-4 ring-black   rounded-full border-white ${isSelectColor === "primary" ? "border ring-4 ring-slate-950 rounded-full" : ""}`} onClick={() => toggleColor("primary")} />
+                        <motion.img whileHover={{ scale: 1.15 }} src={secondary} alt="color palate second color" className={` size-10 max-md:size-7  hover:border  hover:ring-4  ring-green-500   rounded-full border-white ${isSelectColor === "secondary" ? "border ring-4 ring-green-500 rounded-full" : ""}`} onClick={() => toggleColor("secondary")} />
+                        <motion.img whileHover={{ scale: 1.15 }} src={alter} alt="color palate third color" className={` size-10 max-md:size-7  hover:border  hover:ring-4  ring-yellow-500   rounded-full border-white ${isSelectColor === "alter" ? "border ring-4 ring-yellow-500 rounded-full" : ""}`} onClick={() => toggleColor("alter")} />
+                        <motion.img whileHover={{ scale: 1.15 }} src={alter_1} alt="color palate fourth color" className={` size-10 max-md:size-7  hover:border  hover:ring-4  ring-red-600  rounded-full border-white ${isSelectColor === "alter_1" ? "border ring-4 ring-red-600 rounded-full" : ""}`} onClick={() => toggleColor("alter_1")} />
+                    </div>
 
-                            <span className="text text-4xl font-bold lg:text-xl ml-[10%] pt-5 lg:pt-0 lg:ml-0">LKR 3500.00</span>
-                            <span className="flex mt-[2%] font-extralight text-sm  ml-[10%]">(Shipping calculated at checkout)</span>
-                        </div>
-                        <div className='flex gap-5 p-3 flex-col'>
-                            <span className="font-mulish font-semibold text-xl  pl-20  lg:pl-[14.5%] lg:text-m ">Size </span>
-                            <div className='flex gap-2  p-3 pl-20 lg:gap-1 lg:ml-[-0.8rem]'>
-                                <button type="button" className="text-gray-900 bg-white border hover:text-white border-gray-300 focus:outline-none hover:bg-black focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-white dark:hover:text-black dark:hover:border-gray-600 dark:focus:ring-gray-700 mt-6 lg:pl-[5%] lg:pr-[5%]"  >XS</button>
-                                <button type="button" className="text-gray-900 bg-white border hover:text-white border-gray-300 focus:outline-none hover:bg-black focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-white dark:hover:text-black dark:hover:border-gray-600 dark:focus:ring-gray-700 mt-6 lg:pl-[5%] lg:pr-[5%]" >S</button>
-                                <button type="button" className="text-gray-900 bg-white border hover:text-white border-gray-300 focus:outline-none hover:bg-black focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-white dark:hover:text-black dark:hover:border-gray-600 dark:focus:ring-gray-700 mt-6 lg:pl-[5%] lg:pr-[5%]" >M</button>
-                                <button type="button" className="text-gray-900 bg-white border hover:text-white border-gray-300 focus:outline-none hover:bg-black focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-white dark:hover:text-black dark:hover:border-gray-600 dark:focus:ring-gray-700 mt-6 lg:pl-[5%] lg:pr-[5%]" >L</button>
-                                <button type="button" className="text-gray-900 bg-white border hover:text-white border-gray-300 focus:outline-none hover:bg-black focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-white dark:hover:text-black dark:hover:border-gray-600 dark:focus:ring-gray-700 mt-6 lg:pl-[5%] lg:pr-[5%]" >XL</button>
-                            </div>
 
-                        </div>
+                    <div className='flex' >
+                        <span className=' mt-10 ml-4 max-md:text-xs max-md:ml-3'>In Stock (*)</span>
+                        {errorMessage && <h3 className='mx-12 mb-3  flex justify-center py-3 text-red-800 bg-red-100 rounded-md w-[55%] mt-10 ml-[20%] text-sm'>{errorMessage}</h3>}
+                    </div>
 
-                        <div className='flex gap-5 p-3 flex-col'>
-                            <span className="font-mulish font-semibold text-xl  pl-20  lg:pl-[14.5%] lg:text-m ">Color </span>
-                            <div className='flex gap-4 pl-20 lg:pl-[4rem] '>
-                                <img src={color} alt="black" className='lg:h-[60%]' />
-                                <img src={color1} alt="green" className='lg:h-[60%]' />
-                                <img src={color2} alt="yellow" className='lg:h-[60%]' />
-                                <img src={color3} alt="red" className='lg:h-[60%]' />
-                            </div>
-                        </div>
-                        <div className='pl-20 lg:pl-13 flex h-14'>
-                            <input type="number" name="number_cloths " className="pl-8 bg-white w-[30%] h-11" />
-                            <button type="button" className="ml-[5%] px-10  text-gray-900 bg-white border hover:text-white border-gray-300 focus:outline-none hover:bg-black focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-white dark:hover:text-black dark:hover:border-gray-600 dark:focus:ring-gray-700 lg:text-xs h-11"  >ADD TO CART</button>
-                        </div>
+
+                    <div className='flex gap-1 p-5 justify-center max-md:gap-3  '>
+
+                        <motion.img whileHover={{ scale: 1.15 }} className=' size-10  hover:size-11' onClick={add} src={plus} alt="" />
+                        <span className='size-10 text-lg  p-2 bg-white pl-4'>{count}</span>
+                        <motion.img whileHover={{ scale: 1.15 }} className=' size-10  hover:size-11' onClick={sub} src={minus} alt="" />
+                        <motion.button whileHover={{ scale: 1.05 }} className=' ml-4 bg-white text-gray-900  w-[60%] hover:text-white border-gray-300 focus:outline-none hover:bg-black focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-white dark:hover:text-black dark:hover:border-gray-600 dark:focus:ring-gray-700' onClick={addCart}>Add Cart</motion.button>
                     </div>
                 </div>
             </div>
