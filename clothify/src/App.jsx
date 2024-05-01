@@ -42,7 +42,6 @@ function App() {
             <Route path='/home' element={<Home />}></Route>
             <Route path='/signUp' element={<SignUp />}></Route>
             <Route path='/error404' element={<Error />}></Route>
-            <Route path='/products' element={<ProductView collection="SUMMER COLLECTION" />}></Route>
             <Route path='/selected' element={<ProductSelection/>}></Route>
             <Route path='/mens' element={<Men />}></Route>
             <Route path='/kids' element={<Kids />}></Route>

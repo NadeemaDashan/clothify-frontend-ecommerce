@@ -14,18 +14,21 @@ const Header = () => {
     }
     
     return (
-        <div className='mt-16  w-[85%] ml-[8%]'>
-        <header className="flex sticky  bg-[#F4F4DC] font-mulish dark:bg-[#18191b]  rounded-xl h-[6rem]   ">
+        <div className='mt-5  w-[85%] ml-[8%]'>
+        <header className="flex sticky  bg-[#F4F4DC] font-mulish dark:bg-[#18191b]  rounded-xl h-[6rem] mb-10">
             <div className="w-1/3 justify-center items-center p-7 max-lg:hidden ">
                 <ul className="flex gap-7 p-2 dark:text-white tracking-wider lg:tracking-wide lg:text-xs  text-sm">
-                    <li className="ml-5 hover:underline"><Link to='/home'>Home</Link></li>
-                    <li className="hover:underline"><Link>Category</Link></li>
-                    <li className="hover:underline"><Link>SubCategory</Link></li>
-                    <li className="hover:underline"><Link>Collection</Link></li>
+                    <li className="ml-5 hover:underline"><Link to='/mens'>Mens</Link></li>
+                    <li className="hover:underline"><Link to='/womens'>Womens</Link></li>
+                    <li className="hover:underline"><Link to='/teens'>Teens</Link></li>
+                    <li className="hover:underline"><Link to='/kids'>Kids</Link></li>
+                    <li className="hover:underline"><Link to='/subCategories'>SubCategories</Link></li>
                 </ul>
             </div>
             <div className="w-1/3 flex justify-center items-center max-lg:hidden p-5 lg:ml-10">
+                <Link to='/home'>
                 <img src={Image} className="w-40" alt="logo" />
+                </Link>
             </div>
             <div className="flex w-1/3 justify-end items-center p-5 gap-5 max-lg:hidden dark:text-white mr-5 text">
                 <img src={cart} className=' size-5 hidden dark:flex ' alt="" />
