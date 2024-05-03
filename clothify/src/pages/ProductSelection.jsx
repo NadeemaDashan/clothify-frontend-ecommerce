@@ -15,41 +15,47 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 const ProductSelection = () => {
-    
-    const useNav=useNavigate();
-    const {id}=useParams();
-    const [data,setData]=useState({
-        id:0,
-        image:'',
-        name:'',
-        price:0,
-        description:'',
-    });
-    const [state,setState]=useState(false);
-    const [stock,setStock]=useState(10);
 
-    useEffect(()=>{
-        const url=`http://localhost:8080/product/get/${id}`
+    const useNav = useNavigate();
+    const { id } = useParams();
+    const [data, setData] = useState({
+        id: 0,
+        image: '',
+        name: '',
+        price: 0,
+        description: '',
+    });
+    const [stock, setStock] = useState(10);
+
+    useEffect(() => {
+        const url = `http://localhost:8080/product/get/${id}`
         axios.get(url)
-        .then((res)=>{
-            setData({
-                id: res.data.id,
-                name: res.data.name,
-                description: res.data.desc,
-                price: res.data.price,
+            .then((res) => {
+                setData({
+                    id: res.data.id,
+                    name: res.data.name,
+                    description: res.data.desc,
+                    price: res.data.price,
+                })
             })
-        })
-        .catch(error=>useNav('/error404'));
-    },[])
+            .catch(error => useNav('/error404'));
+    }, [])
 
     const [count, setCount] = React.useState(1)
-    const [disabled,setIsDisabled]=React.useState(false);
+    const [disabled, setIsDisabled] = React.useState(false);
     const [isSelectSize, setSelectSize] = React.useState(null)
     const [isSelectColor, setIsSelectColor] = React.useState(null)
     const [cartItem, setCartItem] = React.useState([])
     const [errorMessage, setErrorMessage] = React.useState("")
-
-    const addCart = () => {
+    const [formData, setFormData] = React.useState({
+        id: 0,
+        total: 0,
+        size: "",
+        qty: 1,
+        price: 0,
+        stockId: 0
+    })
+    const addCart = async (e) => {
         if (!isSelectColor && !isSelectSize) {
             setErrorMessage("choose options to proceed")
 
@@ -69,7 +75,15 @@ const ProductSelection = () => {
             }
             setCartItem([...cartItem, newItem])
             setErrorMessage("")
-            axios.post()
+            const url = 'http://localhost:8080/cart/add';
+            console.log(formData.total);
+            await axios.post(url, {
+                id: 0,
+                stock: { id: formData.stockId },
+                qty: formData.qty,
+                productTot: formData.total,
+                isComplete: false
+            }).then(res => console.log(res));
         }
     }
 
@@ -81,48 +95,83 @@ const ProductSelection = () => {
 
 
     function add(params) {
+        setFormData((prev) => {
+            return {
+                ...prev,
+                qty: prev.qty + 1
+            }
+        })
         setCount(prevCount => prevCount + 1)
+        let t = formData.price * (formData.qty+1);
+        setFormData((prev) => {
+            return {
+                ...prev,
+                total: t
+            }
+        });
     }
 
 
     function sub(params) {
         if (count > 1) {
+            setFormData((prev) => {
+                return {
+                    ...prev,
+                    qty: prev.qty - 1
+                }
+            })
             setCount(prevCount => prevCount - 1)
+            let t = formData.price *( formData.qty-1);
+            setFormData((prev) => {
+                return {
+                    ...prev,
+                    total: t
+                }
+            });
         }
     }
 
 
 
-    const toggleSize = (e,preferSize) => {
+    const toggleSize = (e, preferSize) => {
         setSelectSize((prevIsisSelectSizeSize) => {
-            let promise=axios.get(`http://localhost:8080/stock/get?size=${e.target.name}&id=${data.id}`).then((res)=>{  
-                if(res.data[0]==='not valid'){
+            let promise = axios.get(`http://localhost:8080/stock/get?size=${e.target.name}&id=${data.id}`).then((res) => {
+                console.log(res.data);
+                if (res.data[0] === 'not valid') {
                     setStock(0)
                     setIsDisabled(true)
-                    setData((prevState)=>{
-                        return{
+                    setData((prevState) => {
+                        return {
                             ...prevState,
-                            price:0
                         }
                     })
-                }else{
+                } else {
                     setStock(res.data[0].qty)
-                    setData((prevState)=>{
-                        return{
+                    setData((prevState) => {
+                        return {
                             ...prevState,
-                            price:res.data[0].price
+                            price: res.data[0].price
+                        }
+                    })
+                    setFormData((prev) => {
+                        return {
+                            ...prev,
+                            size: e.target.name,
+                            price: res.data[0].price,
+                            stockId: res.data[0].id,
+                            total:res.data[0].price
                         }
                     })
                     setIsDisabled(false)
                 }
             })
-            
+
             return prevIsisSelectSizeSize === preferSize ? null : preferSize
         })
     }
 
     useEffect(() => {
-        
+
     }, [isSelectSize])
 
     useEffect(() => {
@@ -150,11 +199,11 @@ const ProductSelection = () => {
                     <h3 className=' max-xl:text-base text-lg ml-4 mt-5 max-lg:text max-lg:text-sm max-lg:ml-10 max-md:text-xs max-md:ml-3'>Size </h3>
 
                     <div className=' max-md:ml-3  flex gap-4 mt-5 ml-1 max-md:gap-2 '>
-                        <motion.button whileHover={{ scale: 1.15 }} name='xs' className={` max-sm:w-[20%]  max-md:border max-md:rounded-none hover:text-white border-gray-300 focus:outline-none hover:bg-black  font-medium rounded-lg text-sm w-[10%] py-2.5 me-2 mb-2 ${isSelectSize === "button1" ? "  bg-black border 2 border-white text-white" : " bg-slate-50 text-slate-950"}`} onClick={(e) => toggleSize(e,"button1")}>XS</motion.button>
-                        <motion.button whileHover={{ scale: 1.15 }} name='s' className={`max-lg:w-[12%] max-sm:w-[20%]  max-md:border max-md:rounded-none  hover:text-white border-gray-300 focus:outline-none hover:bg-black  font-medium rounded-lg text-sm w-[10%] py-2.5 me-2 mb-2 ${isSelectSize === "button2" ? "  bg-black border 2 border-white text-white" : " bg-slate-50 text-slate-950"}`} onClick={(e) => toggleSize(e,"button2")}>S</motion.button>
-                        <motion.button whileHover={{ scale: 1.15 }} name='m' className={`max-lg:w-[12%] max-sm:w-[20%]  max-md:border max-md:rounded-none hover:text-white border-gray-300 focus:outline-none hover:bg-black  font-medium rounded-lg text-sm w-[10%] py-2.5 me-2 mb-2 ${isSelectSize === "button3" ? "  bg-black border 2 border-white text-white" : " bg-slate-50 text-slate-950"}`} onClick={(e) => toggleSize(e,"button3")}>M</motion.button>
-                        <motion.button whileHover={{ scale: 1.15 }} name='l' className={`max-lg:w-[12%] max-sm:w-[20%]  max-md:border max-md:rounded-none  hover:text-white border-gray-300 focus:outline-none hover:bg-black  font-medium rounded-lg text-sm w-[10%] py-2.5 me-2 mb-2 ${isSelectSize === "button4" ? "  bg-black border 2 border-white text-white" : " bg-slate-50 text-slate-950"}`} onClick={(e) => toggleSize(e,"button4")}>L</motion.button>
-                        <motion.button whileHover={{ scale: 1.15 }} name='xl' className={`max-lg:w-[12%]  max-sm:w-[20%]  max-md:border max-md:rounded-none hover:text-white border-gray-300 focus:outline-none hover:bg-black  font-medium rounded-lg text-sm w-[10%] py-2.5 me-2 mb-2 ${isSelectSize === "button5" ? "  bg-black border 2 border-white text-white" : " bg-slate-50 text-slate-950"}`} onClick={(e) => toggleSize(e,"button5")}>XL</motion.button>
+                        <motion.button whileHover={{ scale: 1.15 }} name='xs' className={` max-sm:w-[20%]  max-md:border max-md:rounded-none hover:text-white border-gray-300 focus:outline-none hover:bg-black  font-medium rounded-lg text-sm w-[10%] py-2.5 me-2 mb-2 ${isSelectSize === "button1" ? "  bg-black border 2 border-white text-white" : " bg-slate-50 text-slate-950"}`} onClick={(e) => toggleSize(e, "button1")}>XS</motion.button>
+                        <motion.button whileHover={{ scale: 1.15 }} name='s' className={`max-lg:w-[12%] max-sm:w-[20%]  max-md:border max-md:rounded-none  hover:text-white border-gray-300 focus:outline-none hover:bg-black  font-medium rounded-lg text-sm w-[10%] py-2.5 me-2 mb-2 ${isSelectSize === "button2" ? "  bg-black border 2 border-white text-white" : " bg-slate-50 text-slate-950"}`} onClick={(e) => toggleSize(e, "button2")}>S</motion.button>
+                        <motion.button whileHover={{ scale: 1.15 }} name='m' className={`max-lg:w-[12%] max-sm:w-[20%]  max-md:border max-md:rounded-none hover:text-white border-gray-300 focus:outline-none hover:bg-black  font-medium rounded-lg text-sm w-[10%] py-2.5 me-2 mb-2 ${isSelectSize === "button3" ? "  bg-black border 2 border-white text-white" : " bg-slate-50 text-slate-950"}`} onClick={(e) => toggleSize(e, "button3")}>M</motion.button>
+                        <motion.button whileHover={{ scale: 1.15 }} name='l' className={`max-lg:w-[12%] max-sm:w-[20%]  max-md:border max-md:rounded-none  hover:text-white border-gray-300 focus:outline-none hover:bg-black  font-medium rounded-lg text-sm w-[10%] py-2.5 me-2 mb-2 ${isSelectSize === "button4" ? "  bg-black border 2 border-white text-white" : " bg-slate-50 text-slate-950"}`} onClick={(e) => toggleSize(e, "button4")}>L</motion.button>
+                        <motion.button whileHover={{ scale: 1.15 }} name='xl' className={`max-lg:w-[12%]  max-sm:w-[20%]  max-md:border max-md:rounded-none hover:text-white border-gray-300 focus:outline-none hover:bg-black  font-medium rounded-lg text-sm w-[10%] py-2.5 me-2 mb-2 ${isSelectSize === "button5" ? "  bg-black border 2 border-white text-white" : " bg-slate-50 text-slate-950"}`} onClick={(e) => toggleSize(e, "button5")}>XL</motion.button>
                     </div>
 
                     <span className=' max-xl:text-base text-lg ml-4 mt-5 max-md:text-xs max-md:ml-3'>Color</span>
@@ -181,7 +230,7 @@ const ProductSelection = () => {
                         <span className='size-10  w-14 text-lg  p-2 ml-1  bg-white pl-5 pb-9 dark:text-white dark:bg-black'>{count}</span>
                         <motion.img whileHover={{ scale: 1.15 }} className=' size-10  hover:size-11 dark:hidden' onClick={sub} src={minus} alt="" />
                         <motion.img whileHover={{ scale: 1.15 }} className=' size-10  hover:size-11 border-none hidden dark:flex' onClick={sub} src={addDarkMinus} alt="" />
-                        <motion.button whileHover={{ scale: 1.05 }} className={`${disabled==true?`pointer-events-none opacity-50 bg-gray-300 cursor-not-allowed  ml-4 w-[60%] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2`:` ml-4 bg-white text-gray-900  w-[60%] hover:text-white border-gray-300 focus:outline-none hover:bg-black focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2`}`}  onClick={addCart}>Add Cart</motion.button>
+                        <motion.button whileHover={{ scale: 1.05 }} className={`${disabled == true ? `pointer-events-none opacity-50 bg-gray-300 cursor-not-allowed  ml-4 w-[60%] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2` : ` ml-4 bg-white text-gray-900  w-[60%] hover:text-white border-gray-300 focus:outline-none hover:bg-black focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2`}`} onClick={(e) => addCart(e)}>Add Cart</motion.button>
                     </div>
                     <div className='  max-md:gap-3 gap-2 flex mt-5 justify-center  lg:hidden md:hidden 2xl:hidden  ' >
                         <motion.img whileHover={{ scale: 1.15 }} className=' size-8  hover:size-9 border-none  dark:hidden' onClick={add} src={plus} alt="" />
@@ -191,17 +240,13 @@ const ProductSelection = () => {
                         <motion.img whileHover={{ scale: 1.15 }} className=' size-8  hover:size-9 border-none hidden dark:flex' onClick={sub} src={addDarkMinus} alt="" />
                     </div>
                     <div className='mt-5 ml-5 md:hidden'>
-                        <motion.button whileHover={{ scale: 1.05 }}  className={`${disabled===true?` w-[90%] pointer-events-none opacity-50 bg-gray-300 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2`:`  bg-white text-gray-900  w-[90%] hover:text-white border-gray-300 focus:outline-none hover:bg-black focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2`}`} onClick={addCart}>Add Cart</motion.button>
+                        <motion.button whileHover={{ scale: 1.05 }} className={`${disabled === true ? ` w-[90%] pointer-events-none opacity-50 bg-gray-300 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2` : `  bg-white text-gray-900  w-[90%] hover:text-white border-gray-300 focus:outline-none hover:bg-black focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2`}`} onClick={(e) => addCart(e)}>Add Cart</motion.button>
                     </div>
                 </div>
             </div>
-            <Footer/>
+            <Footer />
         </div>
     )
 }
 
 export default ProductSelection
-
-
-
-// {`${disabled===true?` w-[90%] pointer-events-none opacity-50 bg-gray-300 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2`:`  bg-white text-gray-900  w-[90%] hover:text-white border-gray-300 focus:outline-none hover:bg-black focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2`}`}
