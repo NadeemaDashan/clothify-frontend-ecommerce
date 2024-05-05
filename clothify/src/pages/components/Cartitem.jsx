@@ -3,9 +3,9 @@ import max from '../../assets/Max.png'
 import min from '../../assets/min.png'
 import cartImg from '../../assets/hi.png'
 
-function CartItem(params) {
+function CartItem(props) {
     return (
-        <div className='flex mb-5'>
+        <div className='flex mb-5 '>
             <div className=' ml-4 w-[30%]'>
                 <img src={cartImg} alt="" />
             </div>

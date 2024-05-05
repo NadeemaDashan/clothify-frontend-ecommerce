@@ -17,6 +17,8 @@ import Kids from './pages/Kids'
 import Womens from './pages/Women'
 import Teens from './pages/Teens'
 import ProductSelection from './pages/ProductSelection'
+import SubCategory from './pages/SubCategory'
+import Product from './pages/Product'
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -44,6 +46,7 @@ function App() {
             <Route path='/error404' element={<Error />}></Route>
             <Route path='/mens' element={<Men />}></Route>
             <Route path='/kids' element={<Kids />}></Route>
+            <Route path='/subCategories' element={<SubCategory/>}></Route>
             <Route path='/women' element={<Womens/>}></Route>
             <Route path='/teens' element={<Teens/>}></Route>
             <Route path='/order' element={<Order/>}></Route>
@@ -51,6 +54,7 @@ function App() {
             <Route path='/cart' element={<Cart/>}></Route>
             <Route path="*" element={<PageNotFound/>}></Route>
             <Route path=':name/product/:id' element={<ProductSelection/>}></Route>
+            <Route path='subCategories/:name/product' element={<Product/>}></Route>
           </Routes>
         </BrowserRouter>
       )

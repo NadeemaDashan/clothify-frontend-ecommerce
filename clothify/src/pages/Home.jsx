@@ -50,11 +50,11 @@ export default function Home() {
             <div className='mb-0 p-0'>
                 <Header action={handleClick}/>
             </div>
-            <motion.main animate={{ scale: 1 }} transition={{ type: "spring", duration: 2 }} initial={{ scale: 0 }} className={`flex flex-col items-center justify-center 2xl:p-60 lg:p-24    ${isOpen==true?` overflow-hidden`:` overflow-scroll`} `}>
+            <motion.main animate={{ scale: 1 }} transition={{ type: "spring", duration: 2 }} initial={{ scale: 0 }} className={`flex flex-col items-center justify-center 2xl:p-24 lg:p-24    ${isOpen==true?` overflow-hidden`:` overflow-scroll`} `}>
 
-                <div className="flex w-[100%] justify-end  overflow-y-hidden mb-12 mt-0 max-sm:p-7 max-lg:p-12 max-xl:p-16  2xl:mt-[-14%] ">
-                    <div  className=" 2xl:mt-10 pt-0 ">
-                        <img src={start} alt="" c />
+                <div className="flex w-[90%] mt-10 justify-end  overflow-y-hidden mb-12  max-sm:p-7 max-lg:p-12 max-xl:p-16  2xl:mt-[-14%] ">
+                    <div  className="  2xl:mt-0 pt-0 ">
+                        <img  src={start} alt="" />
                     </div>
                     <div   className={`mt-[-4%] absolute mr-[-9%] ${isOpen==true?`fixed`:`hidden`}`}>
                         <Cart />
@@ -65,7 +65,9 @@ export default function Home() {
                     <img className="" src={collection} alt="" />
                 </div>
                 <div className="g grid grid-cols-2 gap-1   ml-[5%]   mt-2 p-5  max-sm:hidden">
+                    <Link to='subCategory/tshirt/product'>
                     <motion.img whileHover={{ scale: 1.15 }} whileInView={{ x: 0 }} initial={{ x: -20 }} className="w-[95%]" src={bento1} alt="" />
+                    </Link>
                     <motion.img whileHover={{ scale: 1.15 }} whileInView={{ x: 0 }} initial={{ x: 20 }} className=" w-[100%] mr-2 pr-6" src={bento2} alt="" />
                     <motion.img whileHover={{ scale: 1.15 }} whileInView={{ x: 0 }} initial={{ x: -20 }} className="w-[95%] pt-0 mt-[-80%] md:mt-[-75%] sm:mt-[-74%] " src={bento3} alt="" />
                     <motion.img whileHover={{ scale: 1.15 }} whileInView={{ x: 0 }} initial={{ x: 20 }} className="pt-5 w-[97%] lg:w-[95%] md:w-[94.5%] md:h-[99%] sm:w-[93%] sm:h-[99%] " src={bento4} alt="" />
@@ -89,7 +91,7 @@ export default function Home() {
                     <Link to='/mens' className=''>
                     <motion.img whileHover={{scale:1.5}} className="" src={men} alt="" />
                     </Link>
-                    <Link to='/womens'>
+                    <Link to='/women'>
                     <motion.img whileHover={{scale:1.5}} className=" object-cover " src={women} alt="" />
                     </Link>
                     <Link to='/teens'>
