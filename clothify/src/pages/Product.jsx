@@ -14,7 +14,7 @@ const Product = () => {
     const [products, setProducts] = useState([]);
     const nav = useNavigate();
     useEffect(()=>{
-        const url=`http://localhost:8080/product/get/category/${state.url}`;
+        const url=`http://localhost:8080/product/get/subCategory/${state.url}`;
         Axios.get(url).then((res)=>{
             setProducts(res.data)
         })
