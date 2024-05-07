@@ -7,7 +7,12 @@ import perfumes from '../assets/collection-perfumes.png'
 import Header from '../pages/components/Header'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import Tshirt from '../assets/T-shirtBento.png'
+import Tshirt from '../assets/tshirts.jpg'
+import Shirt from '../assets/shirts.jpg'
+import Denim from '../assets/denims.jpg'
+import Blouse from '../assets/blouses.jpg'
+import Perfume from '../assets/perfumes.jpg'
+import Frock from '../assets/frocks.png'
 
 const SubCategory = () => {
     const gridVariants={
@@ -32,19 +37,19 @@ const SubCategory = () => {
                 <Link to={"tshirts/product"} state={{url:"tshirt",image:Tshirt}}>
                 <motion.img variants={gridSquareVariants}  whileHover={{scale:1.15}} className='w-[100%] h-[100%] object-cover rounded-3xl' src={t_shirts} alt="" />
                 </Link>
-                <Link to={"shirts/product"} state={{url:"shirt",image:Tshirt}}>
+                <Link to={"shirts/product"} state={{url:"shirt",image:Shirt}}>
                 <motion.img variants={gridSquareVariants}  whileHover={{scale:1.15}} className='w-[100%] h-[100%] object-cover rounded-3xl' src={shirts} alt="" />
                 </Link>
-                <Link to={"denims/product"} state={{url:"denims",image:Tshirt}}>
+                <Link to={"denims/product"} state={{url:"denims",image:Denim}}>
                 <motion.img variants={gridSquareVariants}  whileHover={{scale:1.15}} className='w-[100%] h-[100%] object-cover rounded-3xl' src={denims} alt="" />
                 </Link>
-                <Link to={"frocks/product"} state={{url:"frocks",image:Tshirt}}>
+                <Link to={"frocks/product"} state={{url:"frocks",image:Frock}}>
                 <motion.img variants={gridSquareVariants}   whileHover={{scale:1.15}} className='w-[100%] h-[100%] object-cover rounded-3xl' src={frocks} alt="" />
                 </Link>
-                <Link to={"blouses/product"} state={{url:"blouses",image:Tshirt}}>
+                <Link to={"blouses/product"} state={{url:"blouses",image:Blouse}}>
                 <motion.img variants={gridSquareVariants}  whileHover={{scale:1.15}} className='w-[100%] h-[100%] object-cover rounded-3xl' src={blouses} alt="" />
                 </Link>
-                <Link to={"perfumes/product"} state={{url:"perfumes",image:Tshirt}}>
+                <Link to={"perfumes/product"} state={{url:"perfumes",image:Perfume}}>
                 <motion.img variants={gridSquareVariants}  whileHover={{scale:1.15}} className='w-[100%] h-[100%] object-cover rounded-3xl' src={perfumes} alt="" />
                 </Link>
             </motion.div>
