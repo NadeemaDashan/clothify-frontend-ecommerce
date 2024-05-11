@@ -15,7 +15,7 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import Cart from './components/Cart'
-const ProductSelection = () => {
+const P = () => {
     //TODO: Fix customer ID ( Currently customer Id is fixed as 1 when the product is add to the cart)
     const useNav = useNavigate();
     const { id } = useParams();
@@ -27,7 +27,7 @@ const ProductSelection = () => {
         price: 0,
         description: '',
     });
-    const [stock, setStock] = useState(10);
+    const [stock, setStock] = useState(0);
 
     useEffect(() => {
         const url = `http://localhost:8080/product/get/${id}`
@@ -57,6 +57,7 @@ const ProductSelection = () => {
         price: 0,
         stockId: 0
     })
+    const[disableAdd,setDisableAdd]=useState(false)
     const addCart = async (e) => {
         if (!isSelectColor && !isSelectSize) {
             setErrorMessage("choose options to proceed")
@@ -78,7 +79,6 @@ const ProductSelection = () => {
             setCartItem([...cartItem, newItem])
             setErrorMessage("")
             const url = 'http://localhost:8080/cart/add';
-            console.log(formData.total);
             await axios.post(url, {
                 id: 0,
                 stock: { id: formData.stockId },
@@ -96,7 +96,6 @@ const ProductSelection = () => {
                 }
             });
         }
-        
     }
 
     const toggleColor = (colorName) => {
@@ -113,7 +112,18 @@ const ProductSelection = () => {
                 qty: prev.qty + 1
             }
         })
-        setCount(prevCount => prevCount + 1)
+        setCount((prevCount)=>{
+            if(prevCount==stock){
+               setDisableAdd(true)
+               return(
+                prevCount
+               )
+            }else{
+                return(
+                prevCount+1
+                )
+            }
+        })
         let t = formData.price * (formData.qty + 1);
         setFormData((prev) => {
             return {
@@ -125,6 +135,7 @@ const ProductSelection = () => {
 
 
     function sub(params) {
+        setDisableAdd(false)
         if (count > 1) {
             setFormData((prev) => {
                 return {
@@ -202,7 +213,7 @@ const ProductSelection = () => {
                 <div className={`flex p-20  m-20 bg-[#F4F4DC]  max-lg:flex-col max-md:p-3 max-md:m-7  mb-20  dark:bg-[#18191b] dark:text-white rounded-xl lg:p-10 ${isOpen === true ? `overflow-hidden` : `overflow-scroll`}`}>
 
                     <div className=' w-1/3 max-lg:w-2/3 max-lg:p-5 max-lg:ml-16    max-md:ml-10 lg:w-2/3 flex '>
-                    <div className={`mt-[-4%] absolute mr-[-9%] ${isOpen==true?`fixed`:``}`}>
+                    <div className={`mt-[-4%] absolute mr-[-9%] ${isOpen==false?`fixed`:``}`}>
                         {/* <Cart /> */}
                     </div>
                         <motion.img whileHover={{ scale: 1.15 }} className=' h-[100%]  object-cover  ' src={product} alt="selected product image" />
@@ -242,16 +253,16 @@ const ProductSelection = () => {
 
                         <div className='flex  p-5 justify-center max-md:gap-3 gap-2 max-md:hidden '>
 
-                            <motion.img whileHover={{ scale: 1.15 }} className=' size-10  hover:size-11 border-none  dark:hidden' onClick={add} src={plus} alt="" />
-                            <motion.img whileHover={{ scale: 1.15 }} className=' size-10  hover:size-11 border-none hidden dark:flex' onClick={add} src={addDark} alt="" />
+                            <motion.img whileHover={{ scale: 1.15 }} className={`size-10  hover:size-11 border-none dark:hidden select-none ${disableAdd===true?`pointer-events-none `:``}`} onClick={add} src={plus} alt="" />
+                            <motion.img whileHover={{ scale: 1.15 }} className={`size-10 hidden  hover:size-11 border-none dark:flex select-none ${disableAdd===true?`pointer-events-none `:``}`} onClick={add} src={addDark} alt="" />
                             <span className='size-10  w-14 text-lg  p-2 ml-1  bg-white pl-5 pb-9 dark:text-white dark:bg-black'>{count}</span>
                             <motion.img whileHover={{ scale: 1.15 }} className=' size-10  hover:size-11 dark:hidden' onClick={sub} src={minus} alt="" />
                             <motion.img whileHover={{ scale: 1.15 }} className=' size-10  hover:size-11 border-none hidden dark:flex' onClick={sub} src={addDarkMinus} alt="" />
                             <motion.button whileHover={{ scale: 1.05 }} className={`${disabled == true ? `pointer-events-none opacity-50 bg-gray-300 cursor-not-allowed  ml-4 w-[60%] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2` : ` ml-4 bg-white text-gray-900  w-[60%] hover:text-white border-gray-300 focus:outline-none hover:bg-black focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2`}`} onClick={(e) => addCart(e)}>Add Cart</motion.button>
                         </div>
                         <div className='  max-md:gap-3 gap-2 flex mt-5 justify-center  lg:hidden md:hidden 2xl:hidden  ' >
-                            <motion.img whileHover={{ scale: 1.15 }} className=' size-8  hover:size-9 border-none  dark:hidden' onClick={add} src={plus} alt="" />
-                            <motion.img whileHover={{ scale: 1.15 }} className=' size-8  hover:size-9 border-none hidden dark:flex' onClick={add} src={addDark} alt="" />
+                            <motion.img whileHover={{ scale: 1.15 }} className={`size-8  hover:size-9 border-none  dark:hidden ${disableAdd===true?`pointer-events-none`:``}`} onClick={add} src={plus} alt="" />
+                            <motion.img whileHover={{ scale: 1.15 }} className={`size-8  hover:size-9 border-none hidden  dark:flex ${disableAdd===true?`pointer-events-none`:``}`} onClick={add} src={addDark} alt="" />
                             <span className=' size-2  w-14 text-sm  pt-2  ml-1  bg-white pl-5 pb-6 dark:text-white dark:bg-black'>{count}</span>
                             <motion.img whileHover={{ scale: 1.15 }} className=' size-8  hover:size-9 dark:hidden' onClick={sub} src={minus} alt="" />
                             <motion.img whileHover={{ scale: 1.15 }} className=' size-8  hover:size-9 border-none hidden dark:flex' onClick={sub} src={addDarkMinus} alt="" />
@@ -268,4 +279,4 @@ const ProductSelection = () => {
     )
 }
 
-export default ProductSelection
+export default P

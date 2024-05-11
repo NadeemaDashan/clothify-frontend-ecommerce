@@ -19,6 +19,7 @@ import Teens from './pages/Teens'
 import ProductSelection from './pages/ProductSelection'
 import SubCategory from './pages/SubCategory'
 import Product from './pages/Product'
+import P from './pages/P'
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -55,6 +56,7 @@ function App() {
             <Route path="*" element={<PageNotFound/>}></Route>
             <Route path=':name/product/:id' element={<ProductSelection/>}></Route>
             <Route path='subCategories/:name/product' element={<Product/>}></Route>
+            <Route path='subCategories/:name/product/product/:id' element={<P/>}></Route>
           </Routes>
         </BrowserRouter>
       )
