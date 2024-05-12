@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const Error = () => {
 
     return (
-        <div className='w-screen h-screen bg-[#fbfcf0] dark:bg-black flex flex-col justify-around items-center'>
+        <div className='w-screen h-screen bg-[#fbfcf0] dark:bg-black flex flex-col justify-around items-center font-mulish'>
             <img src={Logo} alt='logo' className='w-64' />
             <h1 className='text-9xl font-semibold text-gray-900 dark:text-white'>404</h1>
             <p className='dark:text-white'><span className='ml-20'>Oops, something went wrong </span><br></br>Sorry, There is a issue from our side try again later</p>

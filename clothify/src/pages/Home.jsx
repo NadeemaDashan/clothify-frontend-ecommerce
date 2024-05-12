@@ -45,7 +45,7 @@ export default function Home() {
     }
 
     return (
-        <div className='flex flex-col bg-[#FCFCF5]  dark:bg-black'>
+        <div className='flex flex-col bg-[#FCFCF5]  dark:bg-black font-mulish'>
             <div className=' fixed w-[100%] h-[5rem] bg-[#FCFCF5] dark:fixed dark:bg-black z-50 '>
             <Navbar open={()=>setIsOpen(prevState=>!prevState)}/>
             </div>

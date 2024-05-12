@@ -42,7 +42,7 @@ const CartComponents = (props) => {
     }
     
     return (
-        <div className='flex mb-5 '>
+        <div className='flex mb-5 font-mulish'>
             <div className=' ml-4 w-[30%]'>
                 <img src={cartImg} alt="" />
             </div>

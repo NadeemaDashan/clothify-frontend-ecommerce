@@ -1,10 +1,9 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable react-hooks/rules-of-hooks */
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { useNavigate } from 'react-router-dom'
 import OrderCard from './components/OrderCard'
+import axios from 'axios'
 
 const Order = () => {
     let useNav = useNavigate();
@@ -13,9 +12,26 @@ const Order = () => {
         useNav('/order/success');
     }
     const [isOpen, setIsOpen] = useState(false);
+    const[cartItem,setCartItem]=useState([]);
+    const [isShowProduct,setIsShowProduct]=useState(false);
+    let total=0;
+    cartItem.map((element)=>{
+        total+=element.productTot;
+    })
 
     function handleModal() {
         setIsOpen(prevState => !prevState)
+    }
+    useEffect(()=>{
+        const url=`http://localhost:8080/cart/get/customer/1`
+        axios.get(url).then((response)=>{
+            setCartItem(response.data)
+        }).catch(()=>{
+            useNav("/error404")
+        })
+    },[])
+    function showProducts(){
+        setIsShowProduct(prevState=>!prevState)
     }
 
     return (
@@ -24,39 +40,35 @@ const Order = () => {
             <div className='flex max-lg:flex-col'>
                 <div className='flex flex-col lg:hidden'>
                     <div className='h-max py-8 bg-gray-300 flex justify-between items-center lg:hidden max-md:pl-[5%]'>
-                        <h1 className='pl-12 text-lg pr-4'>Show Order Summary</h1>
-                        <h1 className='font-extrabold text-xl pr-24 pl-4 max-md:pr-20'>Rs 65,000</h1>
+                        <h1 className='pl-5 text-lg pr-4 underline' onClick={showProducts}>Show Order Summary</h1>
+                        <h1 className='font-extrabold text-xl pr-24 pl-[-5%] max-md:pr-20'>LKR {total+500}.00</h1>
                     </div>
-                    <div className='overflow-y-auto bg-[#f5f5f5] lg:hidden flex flex-col items-center dark:bg-[#202021]'>
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
+                    <div className={`overflow-y-auto bg-[#f5f5f5] lg:hidden flex flex-col items-center dark:bg-[#202021] ${isShowProduct==true?`flex`:`hidden`}`}>
+                        {cartItem.map((element)=>{
+                            return(
+                                <OrderCard item={element}/>
+                            )
+                        })}
                         <div className='w-[100%] mb-30 sticky top-0 bg-white py-5 h-[30%]'>
                         <div className='flex flex-col ml-[-5%]'>
                             <div className='flex justify-between w-[100%] px-20 py-1'>
                                 <h3 className='font-bold'>Subtotal</h3>
-                                <h2 className='font-extrabold'> Rs 6700.00</h2>
+                                <h2 className='font-extrabold'> Rs {total}.00</h2>
                             </div>
                             <div className='flex justify-between w-[100%] px-20 py-1'>
                                 <h3 className='font-bold'>Shipping</h3>
                                 <h2 className='font-extrabold'> Rs 500.00</h2>
                             </div>
                             <div className='flex justify-between w-[100%] px-20 py-5'>
-                                <h1 className='text-2xl font-bold'>Grand Total</h1>
-                                <h1 className='text-2xl font-extrabold'>LKR 7200.00</h1>
+                                <h1 className='text-2xl font-bold max-md:text-lg w-[100%]'>Grand Total</h1>
+                                <h1 className='text-2xl font-extrabold lg:truncate ml-[50%] w-[100%] max-md:text-lg'>LKR {total+500}.00</h1>
                             </div>
                         </div>
                     </div>
                     </div>
 
                 </div>
-                <div className='flex flex-col w-[50%] pl-[5%] bg-[#fbfcf9] border-t-2 border-b-2 dark:bg-black dark:border-t-1 dark:border-gray-500 max-lg:w-[100%]'>
+                <div className='flex flex-col w-[50%] pl-[7%] bg-[#fbfcf9] border-t-2 border-b-2 dark:bg-black dark:border-t-1 dark:border-gray-500 max-lg:w-[100%]'>
                     <form>
                         <div className='mb-5 mt-5'>
                             <h1 className='px-3 py-4 tracking-wider font-extrabold text-2xl mb-1 dark:text-white'>Contact</h1>
@@ -68,7 +80,7 @@ const Order = () => {
                                 name="email"
                                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                                 onChange={(e) => handleChange(e)} />
-                            <span className="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
+                            <span className="mt-2 hidden text-sm ml-[2%] text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
                                 Please enter a valid email address
                             </span>
                         </div>
@@ -154,7 +166,7 @@ const Order = () => {
                                 <h4 className='font-bold px-2'>Rs 500.00</h4>
                             </div>
                         </div>
-                        <button className='px-2 py-3 bg-black text-white text-lg rounded-md w-[85%] max-lg:ml-5 lg:ml-3 mb-5 hover:bg-gray-400 dark:bg-white dark:text-black max-sm:ml-2' onClick={(e) => submitForm(e)}>Pay Now</button>
+                        <button className='px-2 py-3 bg-black text-white text-lg rounded-md w-[85%] max-lg:ml-3 lg:ml-3 mb-5 hover:bg-gray-400 dark:bg-white dark:text-black max-sm:ml-2' onClick={(e) => submitForm(e)}>Pay Now</button>
                     </form>
 
                     <div className={`${isOpen ? 'fixed z-10 inset-0 overflow-y-auto' : 'hidden'}`}>
@@ -162,7 +174,7 @@ const Order = () => {
                             <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg"></div>
                             <div className="bg-white rounded-lg overflow-hidden shadow-xl w-[65%] z-50 max-lg:w-[100%]">
                                 <div className="bg-gray-800 py-4 px-6 flex justify-between items-center">
-                                    <h3 className="text-white text-lg font-semibold">Terms of Service</h3>
+                                    <h3 className="text-white text-lg font-semibold ">Terms of Service</h3>
                                     <button onClick={handleModal} className="text-white">&times;</button>
                                 </div>
                                 <div className="p-6">
@@ -180,25 +192,17 @@ const Order = () => {
                 </div>
                 <div className='flex items-center bg-[#ededed] m-0 border-t-2 border-l-2 border-b-2 flex-col dark:bg-[#202021] dark:border-gray-500 h-[1140px] max-lg:hidden border-2'>
                     <div className='overflow-y-auto h-[70%]'>
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
+                      {cartItem.map((element)=>{
+                        return(
+                            <OrderCard key={element.id} item={element}/>
+                        )
+                      })}
                     </div>
                     <div className='w-[100%] mb-30 sticky top-0 bg-white py-5 h-[30%]'>
                         <div className='flex flex-col'>
                             <div className='flex justify-between w-[100%] px-20 py-1'>
                                 <h3 className='font-bold'>Subtotal</h3>
-                                <h2 className='font-extrabold'> Rs 6700.00</h2>
+                                <h2 className='font-extrabold'>Rs {total}.00</h2>
                             </div>
                             <div className='flex justify-between w-[100%] px-20 py-1'>
                                 <h3 className='font-bold'>Shipping</h3>
@@ -206,7 +210,7 @@ const Order = () => {
                             </div>
                             <div className='flex justify-between w-[100%] px-20 py-5'>
                                 <h1 className='text-2xl font-bold max-md:text-sm'>Grand Total</h1>
-                                <h1 className='text-2xl font-extrabold max-md:text-sm'>LKR 7200.00</h1>
+                                <h1 className='text-2xl font-extrabold max-md:text-sm'>LKR {total+500}.00</h1>
                             </div>
                         </div>
                     </div>

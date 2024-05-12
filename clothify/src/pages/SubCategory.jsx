@@ -29,7 +29,7 @@ const SubCategory = () => {
         show:{opacity:1}
     }
   return (
-        <main className=' h-screen pt-8 '>
+        <main className=' h-screen pt-8 font-mulish '>
             <div>
                 <Header />
             </div>

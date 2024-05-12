@@ -205,7 +205,7 @@ const P = () => {
 
 
     return (
-        <div className=' flex flex-col dark:bg-black p-0 mt-0'  >
+        <div className=' flex flex-col dark:bg-black p-0 mt-0 font-mulish'  >
             <div className='mt-0 p-0'>
                 <Header />
             </div>

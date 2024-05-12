@@ -4,7 +4,7 @@ import Logo from '../../public/logo.png'
 
 const PageNotFound = () => {
     return (
-        <div className='w-screen h-screen bg-[#fbfcf0] dark:bg-black flex flex-col justify-around items-center'>
+        <div className='w-screen h-screen bg-[#fbfcf0] dark:bg-black flex flex-col justify-around items-center font-mulish'>
             <img src={Logo} alt='logo' className='w-64' />
             <h1 className='text-9xl font-semibold text-gray-900 dark:text-white'>404</h1>
             <div className='flex flex-col justify-center items-center tracking-wider'>
