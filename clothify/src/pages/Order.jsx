@@ -9,7 +9,7 @@ const Order = () => {
     let useNav = useNavigate();
     function submitForm(e) {
         e.preventDefault();
-        useNav('/order/success');
+       
     }
     const [isOpen, setIsOpen] = useState(false);
     const[cartItem,setCartItem]=useState([]);
@@ -35,7 +35,7 @@ const Order = () => {
     }
 
     return (
-        <div className='font-mulish'>
+        <div className='font-mulish dark:bg-[#050505]'>
             <Header />
             <div className='flex max-lg:flex-col'>
                 <div className='flex flex-col lg:hidden'>
@@ -49,19 +49,19 @@ const Order = () => {
                                 <OrderCard item={element}/>
                             )
                         })}
-                        <div className='w-[100%] mb-30 sticky top-0 bg-white py-5 h-[30%]'>
+                        <div className='w-[100%] mb-30 sticky top-0 bg-white dark:bg-[#000000] py-5 h-[30%]'>
                         <div className='flex flex-col ml-[-5%]'>
                             <div className='flex justify-between w-[100%] px-20 py-1'>
-                                <h3 className='font-bold'>Subtotal</h3>
-                                <h2 className='font-extrabold'> Rs {total}.00</h2>
+                                <h3 className='font-bold dark:text-white'>Subtotal</h3>
+                                <h2 className='font-extrabold dark:text-white'> Rs {total}.00</h2>
                             </div>
                             <div className='flex justify-between w-[100%] px-20 py-1'>
-                                <h3 className='font-bold'>Shipping</h3>
-                                <h2 className='font-extrabold'> Rs 500.00</h2>
+                                <h3 className='font-bold dark:text-white'>Shipping</h3>
+                                <h2 className='font-extrabold dark:text-white'> Rs 500.00</h2>
                             </div>
                             <div className='flex justify-between w-[100%] px-20 py-5'>
-                                <h1 className='text-2xl font-bold max-md:text-lg w-[100%]'>Grand Total</h1>
-                                <h1 className='text-2xl font-extrabold lg:truncate ml-[50%] w-[100%] max-md:text-lg'>LKR {total+500}.00</h1>
+                                <h1 className='text-2xl font-bold max-md:text-lg w-[100%] dark:text-white'>Grand Total</h1>
+                                <h1 className='text-2xl font-extrabold lg:truncate ml-[50%] w-[100%] max-md:text-lg dark:text-white'>LKR {total+500}.00</h1>
                             </div>
                         </div>
                     </div>
@@ -177,7 +177,7 @@ const Order = () => {
                                     <h3 className="text-white text-lg font-semibold ">Terms of Service</h3>
                                     <button onClick={handleModal} className="text-white">&times;</button>
                                 </div>
-                                <div className="p-6">
+                                <div className="p-6 dark:bg-black dark:text-white">
                                     <h2>Terms of Service</h2>
                                     <p>Welcome to Clothify! These terms and conditions outline the rules and regulations for the use of Clothify's Website, located at www.clothify.com.</p>
                                     <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use Clothify if you do not agree to take all of the terms and conditions stated on this page.</p>
@@ -198,19 +198,19 @@ const Order = () => {
                         )
                       })}
                     </div>
-                    <div className='w-[100%] mb-30 sticky top-0 bg-white py-5 h-[30%]'>
+                    <div className='w-[100%] mb-30 sticky top-0 bg-white py-5 dark:bg-[#000000] h-[30%]'>
                         <div className='flex flex-col'>
                             <div className='flex justify-between w-[100%] px-20 py-1'>
-                                <h3 className='font-bold'>Subtotal</h3>
-                                <h2 className='font-extrabold'>Rs {total}.00</h2>
+                                <h3 className='font-bold dark:text-white'>Subtotal</h3>
+                                <h2 className='font-extrabold dark:text-white'>Rs {total}.00</h2>
                             </div>
                             <div className='flex justify-between w-[100%] px-20 py-1'>
-                                <h3 className='font-bold'>Shipping</h3>
-                                <h2 className='font-extrabold'> Rs 500.00</h2>
+                                <h3 className='font-bold dark:text-white'>Shipping</h3>
+                                <h2 className='font-extrabold dark:text-white'> Rs 500.00</h2>
                             </div>
                             <div className='flex justify-between w-[100%] px-20 py-5'>
-                                <h1 className='text-2xl font-bold max-md:text-sm'>Grand Total</h1>
-                                <h1 className='text-2xl font-extrabold max-md:text-sm'>LKR {total+500}.00</h1>
+                                <h1 className='text-2xl font-bold max-md:text-sm dark:text-white '>Grand Total</h1>
+                                <h1 className='text-2xl font-extrabold max-md:text-sm dark:text-white'>LKR {total+500}.00</h1>
                             </div>
                         </div>
                     </div>

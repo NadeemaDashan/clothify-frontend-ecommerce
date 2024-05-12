@@ -19,7 +19,7 @@ const Men = () => {
         })
     },[])
     return (
-        <div className="block scroll-custom h-max">
+        <div className="block scroll-custom dark:bg-black h-max">
             <Header/>
             <section className='flex flex-col bg-[#fbfcf0] h-max w-screen items-center font-mulish overflow-x-hidden overflow-auto scrollbar-hidden dark:bg-black scroll justify-center'>
                 <div className='mt-0 h-72 relative'>

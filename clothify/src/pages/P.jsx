@@ -15,6 +15,7 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import Cart from './components/Cart'
+import Navbar from './components/Navbar'
 const P = () => {
     //TODO: Fix customer ID ( Currently customer Id is fixed as 1 when the product is add to the cart)
     const useNav = useNavigate();
@@ -206,15 +207,15 @@ const P = () => {
 
     return (
         <div className=' flex flex-col dark:bg-black p-0 mt-0 font-mulish'  >
-            <div className='mt-0 p-0'>
-                <Header />
+            <div className='mt-0 p-0 dark:bg-black'>
+                <Header/>
             </div>
 
                 <div className={`flex p-20  m-20 bg-[#F4F4DC]  max-lg:flex-col max-md:p-3 max-md:m-7  mb-20  dark:bg-[#18191b] dark:text-white rounded-xl lg:p-10 ${isOpen === true ? `overflow-hidden` : `overflow-scroll`}`}>
 
                     <div className=' w-1/3 max-lg:w-2/3 max-lg:p-5 max-lg:ml-16    max-md:ml-10 lg:w-2/3 flex '>
                     <div className={`mt-[-4%] absolute mr-[-9%] ${isOpen==false?`fixed`:``}`}>
-                        {/* <Cart /> */}
+                        <Cart />
                     </div>
                         <motion.img whileHover={{ scale: 1.15 }} className=' h-[100%]  object-cover  ' src={product} alt="selected product image" />
                     </div>

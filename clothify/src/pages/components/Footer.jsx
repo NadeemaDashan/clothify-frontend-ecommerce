@@ -17,7 +17,7 @@ const Footer = () => {
                             <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
                             <ul className="text-gray-500 dark:text-gray-400 font-medium">
                                 <li className="mb-4">
-                                    <Link  className="hover:underline" to='/womens'>Womens</Link>
+                                    <Link  className="hover:underline" to='/women'>Women</Link>
                                 </li>
                                 <li>
                                 <Link  className="hover:underline" to='/mens'>Mens</Link>
@@ -28,7 +28,7 @@ const Footer = () => {
                             <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
                             <ul className="text-gray-500 dark:text-gray-400 font-medium">
                                 <li className="mb-4">
-                                    <a href="" className="hover:underline ">Instergram</a>
+                                    <a href="" className="hover:underline ">Instagram</a>
                                 </li>
                                 <li>
                                     <a href="" className="hover:underline">Facebook</a>

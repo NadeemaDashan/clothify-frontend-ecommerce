@@ -13,6 +13,7 @@ import Denim from '../assets/denims.jpg'
 import Blouse from '../assets/blouses.jpg'
 import Perfume from '../assets/perfumes.jpg'
 import Frock from '../assets/frocks.png'
+import Footer from './components/Footer'
 
 const SubCategory = () => {
     const gridVariants={
@@ -29,7 +30,7 @@ const SubCategory = () => {
         show:{opacity:1}
     }
   return (
-        <main className=' h-screen pt-8 font-mulish '>
+        <main className=' pt-8 dark:bg-black font-mulish '>
             <div>
                 <Header />
             </div>
@@ -53,7 +54,7 @@ const SubCategory = () => {
                 <motion.img variants={gridSquareVariants}  whileHover={{scale:1.15}} className='w-[100%] h-[100%] object-cover rounded-3xl' src={perfumes} alt="" />
                 </Link>
             </motion.div>
-            <motion.div variants={gridVariants} initial="hidden" animate="show" className=' p-16 gap-4 flex flex-col mt-3 lg:hidden'>
+            <motion.div variants={gridVariants} initial="hidden" animate="show" className=' p-16 max-sm:p-4 gap-4 flex flex-col mt-3 lg:hidden'>
                 <motion.img variants={gridSquareVariants} whileHover={{scale:1.15}} className='w-[100%] h-[100%] object-cover rounded-3xl' src={t_shirts} alt="" />
                 <motion.img variants={gridSquareVariants} whileHover={{scale:1.15}} className='w-[100%] h-[100%] object-cover rounded-3xl' src={shirts} alt="" />
                 <motion.img variants={gridSquareVariants} whileHover={{scale:1.15}} className='w-[100%] h-[100%] object-cover rounded-3xl' src={denims} alt="" />
@@ -61,6 +62,9 @@ const SubCategory = () => {
                 <motion.img variants={gridSquareVariants} whileHover={{scale:1.15}} className='w-[100%] h-[100%] object-cover rounded-3xl' src={blouses} alt="" />
                 <motion.img variants={gridSquareVariants} whileHover={{scale:1.15}} className='w-[100%] h-[100%] object-cover rounded-3xl' src={perfumes} alt="" />
             </motion.div>
+            <div className='mt-36'>
+            <Footer/>
+            </div>
         </main>
     )
     

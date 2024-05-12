@@ -35,7 +35,7 @@ const Cart = (props) => {
         <div className={`flex flex-col w-[79rem] pl-[48%] mt-[-3%] items-end ${props.mt} font-mulish`}>
             <div className='flex flex-col border-b rounded-t-xl border-t-2 border-l-2 border-r-2 justify-end items-start pt-2 bg-[#FFFFF5] pb-6 w-[80%] dark:bg-[#18191b] dark:text-white'>
                 <h1 className='font-mulish font-extrabold text-xl pt-3 pl-6 pb-6'>SHOPPING CART</h1>
-                <div className='scrollbar-thin overflow-scroll p-2 bg-[#FFFFF5] h-[15rem]'>
+                <div className='scrollbar-thin overflow-scroll p-2 bg-[#FFFFF5] dark:bg-black h-[15rem]'>
                  {cartItem.map((element)=>{
                     toReload
                     return(
