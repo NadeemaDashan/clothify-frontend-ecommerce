@@ -36,9 +36,11 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { Link } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import { useSelector } from 'react-redux';
 
 export default function Home() {
     const [isOpen, setIsOpen] = React.useState(false);
+    const toShow=useSelector((state)=>state.cart.show)
 
     function handleClick(){
         setIsOpen(prevState=>!prevState)
@@ -49,12 +51,12 @@ export default function Home() {
             <div className=' fixed w-[100%] h-[5rem] bg-[#FCFCF5] dark:fixed dark:bg-black z-50 '>
             <Navbar open={()=>setIsOpen(prevState=>!prevState)}/>
             </div>
-            <motion.main animate={{ scale:1}} transition={{ type: "spring", duration: 2 }} initial={{ scale: 0 }} className={`flex flex-col items-center justify-center   p-0  mt-44 max-md:mt-32 max-md:p-18  max-xl:mt-10 max-xl:p-14 max-2xl:p-20 max-2xl:mt-16 2xl:p-32  ${isOpen==true?` overflow-hidden`:` overflow-scroll`} `}>
+            <motion.main animate={{ scale:1}} transition={{ type: "spring", duration: 2 }} initial={{ scale: 0 }} className={`flex flex-col items-center justify-center   p-0  mt-44 max-md:mt-32 max-md:p-18  max-xl:mt-10 max-xl:p-14 max-2xl:p-20 max-2xl:mt-16 2xl:p-32  ${toShow==true?` overflow-hidden`:` overflow-scroll`} `}>
                 <div className=" f w-[100%]  justify-end  overflow-y-hidden mb-12 mt-0 max-sm:p-7 max-lg:p-12 max-xl:p-16  2xl:mt-[-14%] scrollbar-thin over ">
                     <div  className=" 2xl:mt-10 pt-0 ">
                         <img src={start} alt="" />
                     </div>
-                    <div className={`w-[100%] h-[100%]  mt-[-66%] xl:mt-[-72%] xl:ml-[5%] p-0 max-2xl:mt[-70%] mr-10 fixed ${isOpen?`fixed`:`hidden`}`}>
+                    <div className={`w-[100%] h-[100%]  mt-[-66%] xl:mt-[-72%] xl:ml-[5%] p-0 max-2xl:mt[-70%] mr-10 fixed ${toShow?`fixed`:`hidden`}`}>
                         <Cart mt='mt-[3%]'/>
                     </div>
                 </div>

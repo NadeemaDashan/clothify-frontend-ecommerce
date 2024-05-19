@@ -9,6 +9,7 @@ const Order = () => {
     let useNav = useNavigate();
     function submitForm(e) {
         e.preventDefault();
+        useNav("/order/success")
        
     }
     const [isOpen, setIsOpen] = useState(false);

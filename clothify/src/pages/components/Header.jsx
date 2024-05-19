@@ -6,12 +6,15 @@ import Menu from '../../assets/Menu.png'
 import cart from '../../assets/Light Shopping Bag.png'
 import { color } from 'framer-motion'
 import { motion } from 'framer-motion'
+import { useDispatch } from 'react-redux'
+import { showCart } from '../../states/cart/CartSlice'
 
 const Header = (props) => {
     const [isOpen, setIsOpen] = useState(false)
+    const dispatch =useDispatch()
 
     function handleClick(){
-        props.action()
+        dispatch(showCart())
     }
     
     return (

@@ -34,7 +34,7 @@ const Login = ()=> {
             .then((res) => console.log(res.status))
             .catch(error=>{
                 console.log(error)
-                nav('/error404')
+                nav('/home')
             })
         }
     }

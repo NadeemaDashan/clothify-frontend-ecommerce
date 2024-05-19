@@ -55,7 +55,7 @@ const SignUp = () => {
                     
                     })
                     .catch(error=>{
-                           useNav('/error404')
+                           useNav('/home')
                     })
                 return
             } else {
